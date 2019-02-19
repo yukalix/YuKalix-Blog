@@ -1,0 +1,171 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>留言</title>
+<meta name="keywords" content="留言" />
+<meta name="description" content="	留言" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="{% static 'css/base.css' %}" rel="stylesheet">
+<link href="{% static 'css/index.css' %}" rel="stylesheet">
+<link href="{% static 'css/m.css' %}" rel="stylesheet">
+<!--[if lt IE 9]>
+<script src="{% static 'js/modernizr.js' %}"></script>
+<![endif]-->
+</head>
+<body>
+<header>
+  <div id="mnav">
+    <div class="logo"><a href="/">杨青个人博客</a></div>
+    <h2 id="mnavh"><span class="navicon"></span></h2>
+    <ul id="starlist">
+      <li><a href="/">网站首页</a></li>
+ 
+ 
+<li class=""><a href="/about/">关于我</a></li> 
+ 
+ 
+<li class=""><a href="/blog/">博客日记</a></li> 
+ 
+ 
+<li class=""><a href="/share/">模板分享</a></li> 
+ 
+ 
+<li class=""><a href="/study/">学无止境</a></li> 
+ 
+ 
+<li class=""><a href="#">留言</a></li>
+ 
+    </ul>
+  </div>
+  <script>
+window.onload = function ()
+{
+	var oH2 = document.getElementById("mnavh"); 
+	var oUl = document.getElementById("starlist");  
+	oH2.onclick = function ()
+	{
+		var style = oUl.style;
+		style.display = style.display == "block" ? "none" : "block";
+		oH2.className = style.display == "block" ? "open" : ""
+	}
+var obj=null;
+var As=document.getElementById('starlist').getElementsByTagName('a');
+obj = As[0];
+for(i=1;i<As.length;i++){if(window.location.href.indexOf(As[i].href)>=0)
+obj=As[i];}
+obj.id='selected'
+}
+</script> 
+</header>
+<div class="line46"></div>
+<div class="blank"></div>
+<article>
+  <div class="leftbox">
+    <div class="infos">
+      <div class="newsview">
+        <h2 class="intitle">您现在的位置是：<a href='/'>首页</a>&nbsp;>&nbsp;留言</h2>
+         <div class="gbook"> 
+
+    <div class="fb">
+      <ul>
+        <span class="tximg"><img src="{% static 'images/tx3.jpg' %}"></span>
+        <p class="fbtime"><span>2019-02-15</span> 威威</p>
+        <p class="fbinfo">ss</p>
+      </ul>
+    </div>
+
+    
+     
+    
+
+    <div class="fb">
+      <ul>
+        <span class="tximg"><img src="{% static 'images/tx7.jpg' %}"></span>
+        <p class="fbtime"><span>2019-01-14</span> 12312312</p>
+        <p class="fbinfo">312312查分的按时法撒旦法阿萨德</p>
+      </ul>
+    </div>
+    
+     
+    
+
+    <div class="gbox">
+      <form action="{% url 'blog:message' %}" method="post" name="form1" id="form1">
+        <p> <strong>来说点儿什么吧...</strong></p>
+        <p><span> 您的姓名:</span>
+          <input name="name" type="text" id="name" />
+          *</p>
+        <input name="email" type="hidden" id="email" value="admin@qq.com"  />
+        <p><span>选择头像:</span> *</p>
+        <p> <i>
+          <input type="radio" value= "{% static 'images/tx1.jpg' %}" id= "1" name="mycall" style="display:none">
+          <img id="a" src="{% static 'images/tx1.jpg ' %}" onclick="myFun(this.id)"></i> <i>
+          <input type="radio" value= "{% static 'images/tx2.jpg' %}" id= "2" name="mycall" style="display:none">
+          <img id="b" src="{% static 'images/tx2.jpg' %}" onclick="myFun(this.id)"></i> <i>
+          <input type="radio" value= "{% static 'images/tx3.jpg' %}" id= "3" name="mycall" style="display:none">
+          <img id="c" src="{% static 'images/tx3.jpg' %}" onclick="myFun(this.id)"></i> <i>
+          <input type="radio" value= "{% static 'images/tx4.jpg' %}" id= "4" name="mycall" style="display:none">
+          <img id="d" src="{% static 'images/tx4.jpg ' %}" onclick="myFun(this.id)"></i> <i>
+          <input type="radio" value= "{% static 'images/tx5.jpg' %}" id= "5" name="mycall" style="display:none">
+          <img id="e" src="{% static 'images/tx5.jpg' %}" onclick="myFun(this.id)"></i> <i>
+          <input type="radio" value= "{% static 'images/tx6.jpg' %}" id= "6" name="mycall" style="display:none">
+          <img id="f" src="{% static 'images/tx6.jpg' %}" onclick="myFun(this.id)"></i> <i>
+          <input type="radio" value= "{% static 'images/tx7.jpg' %}" id= "7" name="mycall" style="display:none">
+          <img id="g" src="{% static 'images/tx7.jpg' %}" onclick="myFun(this.id)"></i> <i>
+          <input type="radio" value= "{% static 'images/tx8.jpg' %}" id= "8" name="mycall" style="display:none">
+          <img id="h" src="{% static 'images/tx8.jpg' %}" onclick="myFun(this.id)"></i> </p>
+        <p><span class="tnr">留言内容:</span>
+          <textarea name="lytext" cols="60" rows="12" id="lytext"></textarea>
+        </p>
+        <p>
+          <input type="submit" name="Submit3" value="提交" />
+          <input name="enews" type="hidden" id="enews" value="AddGbook" />
+        </p>
+          {% csrf_token %}
+      </form>
+    </div>
+  </div>
+  <script>
+  function myFun(sId) {
+    var oImg = document.getElementsByTagName('img');
+    for (var i = 0; i < oImg.length; i++) {
+      if (oImg[i].id == sId) {
+        oImg[i].previousSibling.previousSibling.checked = true;
+        oImg[i].style.opacity = '1';
+      } else {
+        oImg[i].style.opacity = '.8';
+      }
+    }
+  }
+</script> 
+      </div>
+    </div>
+  </div>
+  <div class="rightbox">
+    <div class="aboutme">
+      <h2 class="ab_title">关于我</h2>
+      <div class="avatar"><img src="{{ MEDIA_URL }}{{ info.head_portrait }}" /></div>
+        <div class="ab_con">
+            <p>网名：{{ info.nick_name }} | {{ info.name }}</p>
+            <p>职业：{{ info.work }} </p>
+            <p>籍贯：{{ info.place }}</p>
+            <p>邮箱：{{ info.email }}</p>
+            <p>点滴: {{ info.record_tip }}</p>
+        </div>
+    </div>
+    <div class="weixin">
+      <h2 class="ab_title">官方微信</h2>
+      <ul>
+        <img src="{% static 'images/wx.jpg' %}">
+      </ul>
+    </div>
+  </div>
+</article>
+<footer>
+  <p>Design by <a href="/">杨青个人博客</a> <a href="/">宁ICP备17002113号-1</a></p>
+</footer>
+</body>
+</html>
+
