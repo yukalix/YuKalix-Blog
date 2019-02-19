@@ -51,7 +51,7 @@ main {
 .gbox { padding: 20px; overflow: hidden; }
 .gbox p { margin-bottom: 10px; overflow: hidden; }
 p.fbtime { color: #000; }
-.fbtime span { float: right; color: #999; font-size: 12px; width: 66px; overflow: hidden; white-space: nowrap; }
+.fbtime span { float: right; color: #999; font-size: 12px; width: 88px; overflow: hidden; white-space: nowrap; }
 p.fbinfo { margin: 10px 0; }
 .fb ul { margin: 10px 10px; padding: 20px 10px; border-bottom: #ececec 1px solid; }
 span.tximg { display: block; float: left; margin-right: 10px; }

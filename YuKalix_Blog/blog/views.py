@@ -1,9 +1,11 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
 from django.views.generic import View
 # Create your views here.
 
-from .models import Banner, AboutMeInfo
+from .forms import MessageForm
 
+from .models import Banner, AboutMeInfo
+from .models import MessageUserPhoto,Message
 # 博客首页
 class Index(View):
 
@@ -17,20 +19,42 @@ class Index(View):
 
 
 # 留言
-class Message(View):
+class MessageView(View):
 
     def get(selfr, request):
         info = AboutMeInfo.objects.first()
+        message_form = MessageForm()
+        # 获取留言所有头像
+        message_photos = MessageUserPhoto.objects.all()
+        # 获取所有留言,分页
+        messages = Message.objects.all()
         return render(request, 'message.html',{
+            'messages': messages,
+            'message_photos': message_photos,
+            'message_form': message_form,
             'info': info,
         })
 
     def post(self, request):
-        user_photo = request.POST.get('mycall', '')
-        user_name = request.POST.get('name')
-        messge = request.POST.get('lytext')
-        print(user_name)
-        print(user_photo)
-        print(messge)
-        return HttpResponse('OK')
+        message_form = MessageForm(request.POST)
+        print(message_form.errors)
+        if message_form.is_valid():
+            # 获取留言所有头像
+            message_photos = MessageUserPhoto.objects.all()
+            user_photo = request.POST.get('mycall', '/media/message/users/2019/02/20/tx2.jpg')
+            user_name = request.POST.get('name')
+            message = request.POST.get('message')
+            message_info = Message.objects.create(user_photo=user_photo, user_name=user_name, message=message)
+            message_info.save()
+            return redirect('/message/')
+
+        else:
+            errors_obj = message_form.errors
+            # 获取留言所有头像
+            message_photos = MessageUserPhoto.objects.all()
+            return render(request, 'message.html', {
+                'message_photos': message_photos,
+                'message_form': message_form,
+                'errors_obj':errors_obj,
+            })
 

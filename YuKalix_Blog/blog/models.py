@@ -39,9 +39,17 @@ class AboutMeInfo(models.Model):
 
 
 # 留言
+class MessageUserPhoto(models.Model):
+    user_photo = models.ImageField(verbose_name='用户头像', upload_to='message/users/%Y/%m/%d')
+    class Meta:
+        verbose_name = '留言头像'
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.id
 
 class Message(models.Model):
-    user_photo = models.ImageField(verbose_name='用户头像', upload_to='message/users/%Y/%m/%d')
+    user_photo = models.URLField(verbose_name='用户头像',default='/media/message/users/2019/02/20/tx2.jpg')
     user_name = models.CharField(verbose_name='用户名', max_length=32)
     message = models.CharField(verbose_name='留言', max_length=126)
     add_time = models.DateTimeField(verbose_name='时间', auto_now_add=datetime.now())

@@ -2,7 +2,7 @@ from  xadmin import views
 import xadmin
 
 from .models import Banner, AboutMeInfo
-from .models import Message
+from .models import MessageUserPhoto, Message
 # 管理平台主题更改
 class BaseSetting(object):
     # 使用主题管理器
@@ -37,7 +37,10 @@ xadmin.site.register(AboutMeInfo, AboutMeInfoAdmin)
 
 
 # 留言
+class MessageUserPhotoAdmin(object):
+    pass
 class MessageAdmin(object):
     list_dispaly = ('message', 'user_name')
 
 xadmin.site.register(Message, MessageAdmin)
+xadmin.site.register(MessageUserPhoto)
