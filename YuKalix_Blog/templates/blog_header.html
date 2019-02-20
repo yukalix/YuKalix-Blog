@@ -1,0 +1,27 @@
+<header>
+  <div id="mnav">
+    <div class="logo"><a href="/">YuKalix个人博客</a></div>
+    <h2 id="mnavh"><span class="navicon"></span></h2>
+    <ul id="starlist">
+      <li><a href="/">网站首页</a></li>
+      <li><a href="{% url 'blog:about_me' %}">关于我</a></li>
+      <li><a href="share.html">学无止境</a></li>
+      <li><a href="list.html">日记</a></li>
+      <li><a href="info.html">慢生活</a></li>
+      <li><a href="{% url 'blog:message' %}">留言</a></li>
+    </ul>
+  </div>
+  <script>
+window.onload = function ()
+{
+	var oH2 = document.getElementById("mnavh");
+	var oUl = document.getElementById("starlist");
+	oH2.onclick = function ()
+	{
+		var style = oUl.style;
+		style.display = style.display == "block" ? "none" : "block";
+		oH2.className = style.display == "block" ? "open" : ""
+	}
+}
+</script>
+</header>

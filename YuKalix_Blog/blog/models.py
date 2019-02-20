@@ -1,5 +1,10 @@
 from django.db import models
 from datetime import datetime
+
+# 富文本
+# from DjangoUeditor.models import UEditorField
+from ckeditor.fields import RichTextField
+
 # Create your models here.
 
 """
@@ -25,8 +30,9 @@ class AboutMeInfo(models.Model):
     name = models.CharField(verbose_name='姓名', max_length=32, default='羽')
     work = models.CharField(verbose_name='工作', max_length=32, default='Python全栈开发工程师')
     place = models.CharField(verbose_name='地点', max_length=32, default='杭州')
-    email = models.EmailField(verbose_name='邮箱')
+    email = models.EmailField(verbose_name='邮箱', default='dong.guowei@aliyun.com')
     record_tip = models.CharField(verbose_name='点滴语录', max_length=32)
+    # article = UEditorField(u'内容',default='',width=1000,height=300,imagePath='goods/images/',filePath='goods/files/')
     add_time = models.DateTimeField(verbose_name='时间', auto_now_add=datetime.now())
 
     class Meta:
@@ -36,7 +42,15 @@ class AboutMeInfo(models.Model):
     def __str__(self):
         return self.nick_name
 
+class AboutMeArticle(models.Model):
+    title = models.CharField(verbose_name='文章标题', max_length=64)
+    article = RichTextField(verbose_name='文章')
+    class Meta:
+        verbose_name = '关于我页面文章'
+        verbose_name_plural = verbose_name
 
+    def __str__(self):
+        return self.title
 
 # 留言
 class MessageUserPhoto(models.Model):

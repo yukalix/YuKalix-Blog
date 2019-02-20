@@ -5,6 +5,7 @@ from django.views.generic import View
 from .forms import MessageForm
 
 from .models import Banner, AboutMeInfo
+from .models import AboutMeArticle
 from .models import MessageUserPhoto,Message
 # 博客首页
 class Index(View):
@@ -17,6 +18,16 @@ class Index(View):
             'info': info,
         })
 
+# 关于我页面
+class AboutMe(View):
+
+    def get(self, request):
+        article = AboutMeArticle.objects.last()
+        info = AboutMeInfo.objects.last()
+        return render(request, 'about.html',{
+            'article': article,
+            'info': info,
+        })
 
 # 留言
 class MessageView(View):
@@ -27,7 +38,7 @@ class MessageView(View):
         # 获取留言所有头像
         message_photos = MessageUserPhoto.objects.all()
         # 获取所有留言,分页
-        messages = Message.objects.all()
+        messages = Message.objects.all().order_by('-add_time')
         return render(request, 'message.html',{
             'messages': messages,
             'message_photos': message_photos,

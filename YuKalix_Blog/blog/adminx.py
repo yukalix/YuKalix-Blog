@@ -2,6 +2,7 @@ from  xadmin import views
 import xadmin
 
 from .models import Banner, AboutMeInfo
+from .models import AboutMeArticle
 from .models import MessageUserPhoto, Message
 # 管理平台主题更改
 class BaseSetting(object):
@@ -29,18 +30,24 @@ class BannerAdmin(object):
 class AboutMeInfoAdmin(object):
     # 图标
     # model_icon = 'fa fa-user-plus'
-    list_display = ('nick_name','name','work','place','email','record_tip','add_time')
+    list_display = ('nick_name','name','work','place','email','record_tip','article','add_time')
+    style_fields = {'goods_desc': 'ueditor'}
     # search_fields  = ('add_time')
 
 xadmin.site.register(Banner, BannerAdmin)
 xadmin.site.register(AboutMeInfo, AboutMeInfoAdmin)
 
 
+class AboutMeArticleAdmin(object):
+    list_display = ('title', 'article')
+
+xadmin.site.register(AboutMeArticle, AboutMeArticleAdmin)
+
 # 留言
 class MessageUserPhotoAdmin(object):
     pass
 class MessageAdmin(object):
-    list_dispaly = ('message', 'user_name')
+    list_display = ('user_name', 'message')
 
 xadmin.site.register(Message, MessageAdmin)
 xadmin.site.register(MessageUserPhoto)

@@ -20,5 +20,7 @@ from django.urls import path, include
 import xadmin
 urlpatterns = [
     path('admin/', xadmin.site.urls),
-    path('', include('blog.urls', namespace='blog'))
+    path('', include('blog.urls', namespace='blog')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('ueditor', include('DjangoUeditor.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -7,6 +7,7 @@
 <meta name="keywords" content="个人博客,YuKalix个人博客" />
 <meta name="description" content="YuKalix个人博客，是一个走在全栈开发师之路的程序猿的个人网站，提供个人成长经历,个人经验,遇到的各种填坑方式" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link REL="SHORTCUT ICON" HREF="{% static "images/favicon.ico" %}"/>
 <link href="{% static 'css/base.css' %}" rel="stylesheet">
 <link href="{% static 'css/index.css' %}" rel="stylesheet">
 <link href="{% static 'css/m.css' %}" rel="stylesheet">
@@ -16,34 +17,7 @@
 <script src="{% static 'js/page.js' %}"></script>
 </head>
 <body>
-<header>
-  <div id="mnav">
-    <div class="logo"><a href="/">YuKalix个人博客</a></div>
-    <h2 id="mnavh"><span class="navicon"></span></h2>
-    <ul id="starlist">
-      <li><a href="/">网站首页</a></li>
-      <li><a href="about.html">关于我</a></li>
-      <li><a href="share.html">模板分享</a></li>
-      <li><a href="list.html">学无止境</a></li>
-      <li><a href="info.html">慢生活</a></li>
-      <li><a href="shareinfo.html">模板内容页</a></li>
-      <li><a href="{% url 'blog:message' %}">留言</a></li>
-    </ul>
-  </div>
-  <script>
-window.onload = function ()
-{
-	var oH2 = document.getElementById("mnavh"); 
-	var oUl = document.getElementById("starlist");  
-	oH2.onclick = function ()
-	{
-		var style = oUl.style;
-		style.display = style.display == "block" ? "none" : "block";
-		oH2.className = style.display == "block" ? "open" : ""
-	}
-}
-</script> 
-</header>
+{% include 'blog_header.html' %}
 <div class="line46"></div>
 <article>
   <div class="pics">
@@ -180,8 +154,6 @@ window.onload = function ()
     </div>
   </div>
 </article>
-<footer>
-  <p>Design by <a href="/">杨青个人博客</a> <a href="/">宁ICP备17002113号-1</a></p>
-</footer>
+    {% include 'blog_footer.html' %}
 </body>
 </html>
