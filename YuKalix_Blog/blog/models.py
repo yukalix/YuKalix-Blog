@@ -42,11 +42,37 @@ class AboutMeInfo(models.Model):
     def __str__(self):
         return self.nick_name
 
+
+# 关于我页面文章
 class AboutMeArticle(models.Model):
     title = models.CharField(verbose_name='文章标题', max_length=64)
     article = RichTextField(verbose_name='文章')
     class Meta:
         verbose_name = '关于我页面文章'
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.title
+
+# 文章
+class Article(models.Model):
+    CLASSIFYS = (
+        ('python', 'Python'),
+        ('web', '前端'),
+        ('diary', '日记'),
+    )
+    image = models.ImageField(verbose_name='文章配图', upload_to='articles/%Y/%m/%d')
+    title = models.CharField(verbose_name='文章标题', max_length=64)
+    intro = models.CharField(verbose_name='文章简介', max_length=300)
+    tag = models.CharField(verbose_name='文章标签', max_length=10, default='')
+    content = RichTextField(verbose_name='文章内容')
+    fav_nums = models.IntegerField(verbose_name='文章点赞量', default=0)
+    look_nums = models.IntegerField(verbose_name='文章浏览量', default=0)
+    classify = models.CharField(verbose_name='文章分类', choices=CLASSIFYS, max_length=10)
+    add_time = models.DateTimeField(verbose_name='时间', auto_now_add=datetime.now())
+
+    class Meta:
+        verbose_name = '文章'
         verbose_name_plural = verbose_name
 
     def __str__(self):
@@ -62,6 +88,7 @@ class MessageUserPhoto(models.Model):
     def __str__(self):
         return self.id
 
+
 class Message(models.Model):
     user_photo = models.URLField(verbose_name='用户头像',default='/media/message/users/2019/02/20/tx2.jpg')
     user_name = models.CharField(verbose_name='用户名', max_length=32)
@@ -74,3 +101,4 @@ class Message(models.Model):
 
     def __str__(self):
         return self.message
+

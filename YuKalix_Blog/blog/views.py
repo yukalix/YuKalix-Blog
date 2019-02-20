@@ -5,14 +5,17 @@ from django.views.generic import View
 from .forms import MessageForm
 
 from .models import Banner, AboutMeInfo
-from .models import AboutMeArticle
+from .models import AboutMeArticle, Article
 from .models import MessageUserPhoto,Message
+
+from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 # 博客首页
 class Index(View):
 
     def get(self, request):
         banners = Banner.objects.all().order_by('-id')[:3]
         info = AboutMeInfo.objects.last()
+
         return render(request, 'index.html',{
             'banners': banners,
             'info': info,
@@ -29,6 +32,11 @@ class AboutMe(View):
             'info': info,
         })
 
+# 学无止境页面
+class Share(View):
+
+    def get(self, request):
+        return render(request, 'share.html')
 # 留言
 class MessageView(View):
 
@@ -37,10 +45,19 @@ class MessageView(View):
         message_form = MessageForm()
         # 获取留言所有头像
         message_photos = MessageUserPhoto.objects.all()
+
         # 获取所有留言,分页
         messages = Message.objects.all().order_by('-add_time')
+        try:
+            page = request.GET.get('page', 1)
+        except PageNotAnInteger:
+            page = 1
+        p = Paginator(messages, 6, request=request)
+        all_message_page = p.page(page)
+
         return render(request, 'message.html',{
-            'messages': messages,
+            'all_message_page': all_message_page,
+            # 'messages': messages,
             'message_photos': message_photos,
             'message_form': message_form,
             'info': info,

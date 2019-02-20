@@ -25,7 +25,7 @@
       <div class="newsview">
         <h2 class="intitle">您现在的位置是：<a href='/'>首页</a>&nbsp;>&nbsp;留言</h2>
          <div class="gbook"> 
-            {% for message in messages %}
+            {% for message in all_message_page.object_list %}
              <div class="fb">
               <ul>
                 <span class="tximg"><img src="{{ message.user_photo }}"></span>
@@ -34,6 +34,10 @@
               </ul>
             </div>
             {% endfor %}
+         <div class="pages" align="center">
+            {{ all_message_page.render }}
+             <p>第{{ all_message_page.number }}页</p>
+         </div>
 
     <div class="gbox">
       <form action="{% url 'blog:message' %}" method="post" name="form1" id="form1">

@@ -6,5 +6,9 @@
       <auth-required>false</auth-required>
       <first-sync>true</first-sync>
     </data-source>
+    <data-source name="db" uuid="d31d4025-1c1c-4d9c-a174-f66f053f1876">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+      <introspection-schemas>*:</introspection-schemas>
+    </data-source>
   </component>
 </project>

@@ -13,6 +13,11 @@ a { text-decoration: none; color: #555 }
 .line46 { height: 46px; width: 100% }
 /* header */
 header { width: 100%; color: #FFF; background: #333; line-height: 46px; overflow: hidden; position: fixed; top: 0; z-index: 100 }
+.active{color: #f65a8a;}
+.pages{
+    background-color: #eeeeee;
+    margin: 5px auto;
+}
 .logo { float: left; font-size: 22px }
 #mnav { width: 1100px; margin: auto }
 #mnav a { color: #FFF }

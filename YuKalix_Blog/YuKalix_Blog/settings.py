@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     # 添加富文本
     'ckeditor',
     # 'DjangoUeditor',
+    # 分页
+    'pure_pagination',
     # add app
     'blog',
 ]
@@ -135,8 +137,13 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
+# pure_pagination config
+PAGINATION_SETTINGS = {
+    'PAGE_RANGE_DISPLAYED': 10,
+    'MARGIN_PAGES_DISPLAYED': 2,
 
-
+    'SHOW_FIRST_PAGE_WHEN_INVALID': True,
+}
 
 
 

@@ -3,6 +3,7 @@ import xadmin
 
 from .models import Banner, AboutMeInfo
 from .models import AboutMeArticle
+from .models import Article
 from .models import MessageUserPhoto, Message
 # 管理平台主题更改
 class BaseSetting(object):
@@ -42,6 +43,11 @@ class AboutMeArticleAdmin(object):
     list_display = ('title', 'article')
 
 xadmin.site.register(AboutMeArticle, AboutMeArticleAdmin)
+
+class ArticleAdmin(object):
+    pass
+
+xadmin.site.register(Article)
 
 # 留言
 class MessageUserPhotoAdmin(object):
