@@ -24,3 +24,7 @@ urlpatterns = [
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('ueditor', include('DjangoUeditor.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# 全局配置404
+# handler404 = 'users.views.page_not_found'
+# handler500 = 'users.views.page_error'

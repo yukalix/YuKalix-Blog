@@ -3,8 +3,8 @@ import xadmin
 
 from .models import Banner, AboutMeInfo
 from .models import AboutMeArticle
-from .models import Article
-from .models import MessageUserPhoto, Message
+from .models import Article,ArticleTag
+from .models import MessageUserPhoto, Message, Blogroll
 # 管理平台主题更改
 class BaseSetting(object):
     # 使用主题管理器
@@ -31,7 +31,7 @@ class BannerAdmin(object):
 class AboutMeInfoAdmin(object):
     # 图标
     # model_icon = 'fa fa-user-plus'
-    list_display = ('nick_name','name','work','place','email','record_tip','article','add_time')
+    list_display = ('nick_name','name','work','place','email','record_tip','add_time')
     style_fields = {'goods_desc': 'ueditor'}
     # search_fields  = ('add_time')
 
@@ -44,9 +44,18 @@ class AboutMeArticleAdmin(object):
 
 xadmin.site.register(AboutMeArticle, AboutMeArticleAdmin)
 
+class ArticleTagAdmin(object):
+    list_display = search_fields = list_filter = ['id', 'tag_name']
+    list_editable = ['tag_name']
+    ordering = ['-id']
+    relfield_style = 'fk-ajax'
+    refresh_tiems = [3, 5]
+    readonly_fields = ['id']
+
 class ArticleAdmin(object):
     pass
 
+xadmin.site.register(ArticleTag,ArticleTagAdmin)
 xadmin.site.register(Article)
 
 # 留言
@@ -57,3 +66,9 @@ class MessageAdmin(object):
 
 xadmin.site.register(Message, MessageAdmin)
 xadmin.site.register(MessageUserPhoto)
+
+# 友情链接
+class BlogrollAdmin(object):
+    list_display = ('name',)
+
+xadmin.site.register(Blogroll, BlogrollAdmin)

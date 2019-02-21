@@ -54,6 +54,17 @@ class AboutMeArticle(models.Model):
     def __str__(self):
         return self.title
 
+# 文章标签
+class ArticleTag(models.Model):
+    tag_name = models.CharField(max_length=10, verbose_name="标签名", null=False, blank=False)
+
+    class Meta:
+        verbose_name = "文章标签"
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.tag_name
+
 # 文章
 class Article(models.Model):
     CLASSIFYS = (
@@ -61,13 +72,14 @@ class Article(models.Model):
         ('web', '前端'),
         ('diary', '日记'),
     )
-    image = models.ImageField(verbose_name='文章配图', upload_to='articles/%Y/%m/%d')
+    image = models.ImageField(verbose_name='文章配图', upload_to='articles/%Y/%m/%d', blank=True)
     title = models.CharField(verbose_name='文章标题', max_length=64)
+    author = models.CharField(verbose_name='文章作者', max_length=32)
     intro = models.CharField(verbose_name='文章简介', max_length=300)
-    tag = models.CharField(verbose_name='文章标签', max_length=10, default='')
+    tag = models.ManyToManyField(ArticleTag,verbose_name='文章标签',  max_length=10, default='', null=True, blank=True)
     content = RichTextField(verbose_name='文章内容')
-    fav_nums = models.IntegerField(verbose_name='文章点赞量', default=0)
-    look_nums = models.IntegerField(verbose_name='文章浏览量', default=0)
+    fav_nums = models.PositiveIntegerField(verbose_name='文章点赞量', default=0)
+    look_nums = models.PositiveIntegerField(verbose_name='文章浏览量', default=0)
     classify = models.CharField(verbose_name='文章分类', choices=CLASSIFYS, max_length=10)
     add_time = models.DateTimeField(verbose_name='时间', auto_now_add=datetime.now())
 
@@ -85,10 +97,6 @@ class MessageUserPhoto(models.Model):
         verbose_name = '留言头像'
         verbose_name_plural = verbose_name
 
-    def __str__(self):
-        return self.id
-
-
 class Message(models.Model):
     user_photo = models.URLField(verbose_name='用户头像',default='/media/message/users/2019/02/20/tx2.jpg')
     user_name = models.CharField(verbose_name='用户名', max_length=32)
@@ -101,4 +109,16 @@ class Message(models.Model):
 
     def __str__(self):
         return self.message
+
+# 友情链接
+class Blogroll(models.Model):
+    name = models.CharField(verbose_name='用户名', max_length=32)
+    url =  models.URLField(verbose_name='链接')
+
+    class Meta:
+        verbose_name = '友情链接'
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.name
 
