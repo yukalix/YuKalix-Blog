@@ -19,8 +19,7 @@ class GlobalSetting(object):
     site_footer = 'YuKalix小小窝'
     # 设置导航折叠,以每一个app为一个折叠框
     # menu_style = 'accordion'
-xadmin.site.register(views.BaseAdminView, BaseSetting)
-xadmin.site.register(views.CommAdminView, GlobalSetting)
+
 
 
 # 主页
@@ -35,14 +34,11 @@ class AboutMeInfoAdmin(object):
     style_fields = {'goods_desc': 'ueditor'}
     # search_fields  = ('add_time')
 
-xadmin.site.register(Banner, BannerAdmin)
-xadmin.site.register(AboutMeInfo, AboutMeInfoAdmin)
-
 
 class AboutMeArticleAdmin(object):
     list_display = ('title', 'article')
 
-xadmin.site.register(AboutMeArticle, AboutMeArticleAdmin)
+
 
 class ArticleTagAdmin(object):
     list_display = search_fields = list_filter = ['id', 'tag_name']
@@ -53,22 +49,35 @@ class ArticleTagAdmin(object):
     readonly_fields = ['id']
 
 class ArticleAdmin(object):
-    pass
+    list_display = ('title', 'is_recommend')
 
-xadmin.site.register(ArticleTag,ArticleTagAdmin)
-xadmin.site.register(Article)
 
 # 留言
 class MessageUserPhotoAdmin(object):
     pass
+
 class MessageAdmin(object):
     list_display = ('user_name', 'message')
 
-xadmin.site.register(Message, MessageAdmin)
-xadmin.site.register(MessageUserPhoto)
 
 # 友情链接
 class BlogrollAdmin(object):
     list_display = ('name',)
 
+# 注册
+xadmin.site.register(views.BaseAdminView, BaseSetting)
+xadmin.site.register(views.CommAdminView, GlobalSetting)
+xadmin.site.register(Banner, BannerAdmin)
+xadmin.site.register(AboutMeInfo, AboutMeInfoAdmin)
+xadmin.site.register(AboutMeArticle, AboutMeArticleAdmin)
+
+xadmin.site.register(ArticleTag,ArticleTagAdmin)
+xadmin.site.register(Article, ArticleAdmin)
+
+xadmin.site.register(MessageUserPhoto)
+xadmin.site.register(Message, MessageAdmin)
 xadmin.site.register(Blogroll, BlogrollAdmin)
+
+
+
+

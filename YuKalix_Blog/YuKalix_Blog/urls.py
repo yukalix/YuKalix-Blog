@@ -26,5 +26,5 @@ urlpatterns = [
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # 全局配置404
-# handler404 = 'users.views.page_not_found'
+# handler404 = 'blog.views.page404'
 # handler500 = 'users.views.page_error'

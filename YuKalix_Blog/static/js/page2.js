@@ -1,8 +1,7 @@
 
-<!--
-var pager = new ETNGpager('list','list2',5,10);//12Ϊÿҳ��ʾ������10Ϊ������ʾ�˵���
+var pager = new ETNGpager('list','list2',6,10);//12Ϊÿҳ��ʾ������10Ϊ������ʾ�˵���
 var curP = 1;
-page()
+page();
 function page(i){
 curP =(curP>pager.cntP)?1:curP;
 if(i){
@@ -13,4 +12,4 @@ n = curP++;
 pager.curP = (n>pager.cntP)?pager.cntP:n;
 pager.create();
 }
-//-->
+

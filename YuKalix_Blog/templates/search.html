@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+<body>
+{% include 'blog_header.html' %}
+<div class="line46"></div>
+<article>
+  <div class="leftbox">
+    <div class="newblogs">
+      <h2 class="hometitle">搜索结果</h2>
+      <ul>
+          {% for article in articles %}
+            <li>
+                <h3 class="blogtitle"><a href="{% url 'blog:article' article.classify article.id %}" target="_blank" >{{ article.title }}</a></h3>
+                <div class="bloginfo"><span class="blogpic"><a href="{% url 'blog:article' article.classify article.id %}" title=""><img src="{{ MEDIA_URL }}{{ article.image }}"  /></a></span>
+                <p>{{ article.intro }}</p>
+                </div>
+                <div class="autor">
+                    <span class="lm f_l"><a href="/">{{ article.author }}</a></span>
+                    <span class="dtime f_l">{{ article.add_time }}</span>
+                    <span class="viewnum f_l">浏览（<a href="/">{{ article.look_nums }}</a>）</span>
+                    <span class="pingl f_l">评论（<a href="/">{{ article.fav_nums }}</a>）</span>
+                    <span class="f_r"><a href="{% url 'blog:article' article.classify article.id %}" class="more">阅读原文>></a></span></div>
+        </li>
+          {% endfor %}
+      </ul>
+      <div class="pagelist">
+          <a title="Total record">&nbsp;<b>142</b>
+          </a>&nbsp;&nbsp;<a href="/jstt/index.html">首页</a>&nbsp;
+          <a href="/jstt/index.html">上一页</a>&nbsp;
+          <a href="/jstt/index.html">1</a>&nbsp;<b>2</b>&nbsp;
+          <a href="/jstt/index_3.html">3</a>&nbsp;
+          <a href="/jstt/index_4.html">4</a>&nbsp;
+          <a href="/jstt/index_5.html">5</a>&nbsp;
+          <a href="/jstt/index_6.html">6</a>&nbsp;
+          <a href="/jstt/index_3.html">下一页</a>&nbsp;
+          <a href="/jstt/index_6.html">尾页</a>
+      </div>
+    </div>
+  </div>
+  <div class="rightbox">
+  <div class="blank"></div>
+    <div class="search">
+      <form action="{% url 'blog:search'%}" method="get" name="searchform" id="searchform">
+        <input name="keyboard" id="keyboard" class="input_text" value="请输入关键字" style="color: rgb(153, 153, 153);" onfocus="if(value=='请输入关键字'){this.style.color='#000';value=''}" onblur="if(value==''){this.style.color='#999';value='请输入关键字'}" type="text">
+        <input name="show" value="title" type="hidden">
+        <input name="tempid" value="1" type="hidden">
+        <input name="tbname" value="news" type="hidden">
+        <input name="Submit" class="input_submit" value="搜索" type="submit">
+      </form>
+    </div>
+
+    <div class="weixin">
+      <h2 class="ab_title">微信关注</h2>
+      <ul>
+        <img src="{% static 'images/wx.jpg' %}">
+      </ul>
+    </div>
+  </div>
+</article>
+{% include 'blog_footer.html' %}
+</body>
+{% endblock %}

@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.views.generic import View
+from django.db.models import Q
 # Create your views here.
 
 from .forms import MessageForm
@@ -17,6 +18,9 @@ class Index(View):
         info = AboutMeInfo.objects.last()
         blogrolls = Blogroll.objects.all()
         articles = Article.objects.all()
+        # 特别推荐列表
+        # classifys = Article.CLASSIFYS
+        recommend_articles = articles.filter(is_recommend=True)[:6]
         # 最新文章
         new_articles = articles.order_by('-add_time')
         # 点击最高文章
@@ -24,7 +28,9 @@ class Index(View):
         return render(request, 'index.html',{
             'banners': banners,
             'info': info,
+            # 'classifys': classifys,
             'blogrolls': blogrolls,
+            'recommend_articles': recommend_articles,
             'new_articles': new_articles,
             'click_articles': click_articles,
         })
@@ -51,15 +57,17 @@ class ArticleView(View):
 
     def get(self, request, classify, id):
         article = Article.objects.filter(id=id)
+        # 类似上一篇,下一篇
         same_as_articles = Article.objects.filter(classify=classify)
+
         # 点击最高文章
         click_articles = Article.objects.all().order_by('look_nums')[:5]
 
         # BUG 未能完成获取分类里面上下篇操作
-        up_article = same_as_articles[0]
-        print(up_article)
-        down_article = same_as_articles[0]
-        print(down_article)
+        up_article = same_as_articles.order_by('add_time').first()
+        # print(up_article)
+        down_article = same_as_articles.order_by('add_time').last()
+
 
 
         # 获取文章标签
@@ -71,6 +79,23 @@ class ArticleView(View):
             'up_article': up_article,
             'down_article': down_article,
         })
+
+# 搜索
+class Search(View):
+
+    def get(self, request):
+        keyboard = request.GET.get('keyboard')
+
+        all_articles = Article.objects.all()
+
+        if keyboard:
+            articles = all_articles.filter(Q(title__contains=keyboard)|Q(author__icontains=keyboard)\
+            |Q(classify__icontains=keyboard)|Q(content__in=keyboard))
+            print(articles)
+        else:
+            return HttpResponse('未找到')
+
+        return render(request,'search.html', {'articles': articles})
 
 # 留言
 class MessageView(View):
@@ -121,3 +146,9 @@ class MessageView(View):
                 'errors_obj':errors_obj,
             })
 
+
+
+
+
+def page404(request):
+    return render(request, '404.html', status=404)

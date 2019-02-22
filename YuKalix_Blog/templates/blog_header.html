@@ -6,7 +6,7 @@
       <li><a href="/" {% ifequal '/' request.path %}style="color:  #f65a8a" {% endifequal %}>网站首页</a></li>
       <li><a href="{% url 'blog:about_me' %}" {% ifequal '/about_me/' request.path %}style="color:  #f65a8a" {% endifequal %}>关于我</a></li>
       <li><a href="{% url 'blog:share' %}" {% ifequal '/share/' request.path %} style="color:  #f65a8a" {% endifequal %} >学无止境</a></li>
-      <li><a href="{% url 'blog:article' '1' 1 %}">慢生活</a></li>
+      <li><a href="{% url 'blog:search'%}">慢生活</a></li>
       <li><a href="info.html">资源共享</a></li>
       <li><a href="{% url 'blog:message' %}" {% ifequal '/message/' request.path %} style="color:  #f65a8a" {% endifequal %}>留言</a></li>
     </ul>

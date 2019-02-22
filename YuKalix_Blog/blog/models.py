@@ -81,6 +81,7 @@ class Article(models.Model):
     fav_nums = models.PositiveIntegerField(verbose_name='文章点赞量', default=0)
     look_nums = models.PositiveIntegerField(verbose_name='文章浏览量', default=0)
     classify = models.CharField(verbose_name='文章分类', choices=CLASSIFYS, max_length=10)
+    is_recommend = models.BooleanField(verbose_name='特别推荐', default=False)
     add_time = models.DateTimeField(verbose_name='时间', auto_now_add=datetime.now())
 
     class Meta:
