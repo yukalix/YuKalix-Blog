@@ -24,7 +24,8 @@ class Index(View):
         # 最新文章
         new_articles = articles.order_by('-add_time')
         # 点击最高文章
-        click_articles = articles.order_by('look_nums')[:5]
+        click_articles = articles.order_by('-look_nums')[:5]
+        print(click_articles)
         return render(request, 'index.html',{
             'banners': banners,
             'info': info,
@@ -57,17 +58,22 @@ class ArticleView(View):
 
     def get(self, request, classify, id):
         article = Article.objects.filter(id=id)
+        # 浏览量
+        look_num = article[0].look_nums
+        article.update(look_nums = look_num + 1)
         # 类似上一篇,下一篇
         same_as_articles = Article.objects.filter(classify=classify)
 
-        # 点击最高文章
-        click_articles = Article.objects.all().order_by('look_nums')[:5]
+
 
         # BUG 未能完成获取分类里面上下篇操作
-        up_article = same_as_articles.order_by('add_time').first()
-        # print(up_article)
-        down_article = same_as_articles.order_by('add_time').last()
-
+        # print(same_as_articles.filter(id__lt=id).first())
+        # up_article = same_as_articles.filter(id__lt=id).first()
+        # # print(up_article)
+        # down_article = same_as_articles.filter(id__gt=id).first()
+        # print(down_article, 'cets')
+        # 点击最高文章
+        click_articles = Article.objects.all().order_by('look_nums')[:5]
 
 
         # 获取文章标签
@@ -76,9 +82,18 @@ class ArticleView(View):
             'article': article[0],
             'click_articles': click_articles,
             'same_as_articles': same_as_articles,
-            'up_article': up_article,
-            'down_article': down_article,
+            # 'up_article': up_article,
+            # 'down_article': down_article,
         })
+
+# 点赞
+class ClickFav(View):
+    def get(self, request):
+        article_id = request.GET.get('article_id')
+        click_fav = Article.objects.filter(id=article_id)
+        fav_num = click_fav[0].fav_nums
+        click_fav.update(fav_nums=fav_num+1)
+        return HttpResponse('OK')
 
 # 搜索
 class Search(View):
