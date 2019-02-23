@@ -71,17 +71,19 @@ class Article(models.Model):
         ('python', 'Python'),
         ('web', '前端'),
         ('diary', '日记'),
+        ('linux', 'Linux'),
     )
     image = models.ImageField(verbose_name='文章配图', upload_to='articles/%Y/%m/%d', blank=True)
     title = models.CharField(verbose_name='文章标题', max_length=64)
-    author = models.CharField(verbose_name='文章作者', max_length=32)
-    intro = models.CharField(verbose_name='文章简介', max_length=300)
+    author = models.CharField(verbose_name='文章作者', max_length=32, default='YuKalix')
+    intro = models.CharField(verbose_name='文章简介', max_length=300, default='')
     tag = models.ManyToManyField(ArticleTag,verbose_name='文章标签',  max_length=10, default='', null=True, blank=True)
     content = RichTextField(verbose_name='文章内容')
     fav_nums = models.PositiveIntegerField(verbose_name='文章点赞量', default=0)
     look_nums = models.PositiveIntegerField(verbose_name='文章浏览量', default=0)
     classify = models.CharField(verbose_name='文章分类', choices=CLASSIFYS, max_length=10)
     is_recommend = models.BooleanField(verbose_name='特别推荐', default=False)
+    is_original = models.BooleanField(verbose_name='原创', default=False)
     add_time = models.DateTimeField(verbose_name='时间', auto_now_add=datetime.now())
 
     class Meta:
@@ -90,6 +92,23 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
+
+# 资源共享
+class ShareRecourse(models.Model):
+    image = models.ImageField(verbose_name='资源图片', upload_to='resourse/%Y/%m/%d', blank=True)
+    name = models.CharField(verbose_name='资源名字', max_length=64)
+    intro = models.CharField(verbose_name='资源介绍', max_length=300)
+    path = models.URLField(verbose_name='资源链接',default='')
+    passwd = models.CharField(verbose_name='资源密码', max_length=10, blank=True)
+    add_time = models.DateTimeField(verbose_name='时间', auto_now_add=datetime.now())
+
+    class Meta:
+        verbose_name = '资源'
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.name
+
 
 # 留言
 class MessageUserPhoto(models.Model):

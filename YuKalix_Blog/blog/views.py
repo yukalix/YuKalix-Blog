@@ -6,7 +6,7 @@ from django.db.models import Q
 from .forms import MessageForm
 
 from .models import Banner, AboutMeInfo
-from .models import AboutMeArticle, Article
+from .models import AboutMeArticle, Article, ShareRecourse
 from .models import MessageUserPhoto,Message, Blogroll
 
 from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
@@ -25,7 +25,6 @@ class Index(View):
         new_articles = articles.order_by('-add_time')
         # 点击最高文章
         click_articles = articles.order_by('-look_nums')[:5]
-        print(click_articles)
         return render(request, 'index.html',{
             'banners': banners,
             'info': info,
@@ -48,10 +47,44 @@ class AboutMe(View):
         })
 
 # 学无止境页面
+class Study(View):
+
+    def get(self, request):
+        classifies = Article.CLASSIFYS
+        classify = request.GET.get('classify','python')
+        same_as_articles = Article.objects.filter(classify=classify)
+
+        # 分页
+        try:
+            page = request.GET.get('page', 1)
+        except PageNotAnInteger:
+            page = 1
+        # 这里指从allorg中取五个出来，每页显示5个
+        p = Paginator(same_as_articles, 4)
+        messages = p.page(page)
+
+
+        # 本栏推荐
+        recommend_articles = same_as_articles.filter(is_recommend=True)
+        # 点击排行
+        click_articles = same_as_articles.order_by('-look_nums')[:5]
+
+        return render(request, 'study.html', {
+            'classifies': classifies,
+            'same_as_articles': same_as_articles,
+            'messages': messages,
+            'recommend_articles': recommend_articles,
+            'click_articles': click_articles,
+        })
+
+# 资源共享
 class Share(View):
 
     def get(self, request):
-        return render(request, 'share.html')
+        recourses = ShareRecourse.objects.all().order_by('-add_time')
+        return render(request, 'share.html', {
+            'recourses': recourses,
+        })
 
 # 文章页
 class ArticleView(View):
@@ -61,17 +94,30 @@ class ArticleView(View):
         # 浏览量
         look_num = article[0].look_nums
         article.update(look_nums = look_num + 1)
-        # 类似上一篇,下一篇
+        # 类似篇
         same_as_articles = Article.objects.filter(classify=classify)
-
 
 
         # BUG 未能完成获取分类里面上下篇操作
         # print(same_as_articles.filter(id__lt=id).first())
-        # up_article = same_as_articles.filter(id__lt=id).first()
-        # # print(up_article)
-        # down_article = same_as_articles.filter(id__gt=id).first()
-        # print(down_article, 'cets')
+        # 构建一个空的
+        none = {
+            'classify': '#',
+            'id': 0,
+            'title': '',
+        }
+        up_article = same_as_articles.filter(id__lt=id).first()
+        if not up_article:
+            up_article = none
+        down_article = same_as_articles.filter(id__gt=id).first()
+        print(down_article)
+        if not down_article:
+            print('ok')
+            down_article = none
+
+        # 特别推荐列表
+        # classifys = Article.CLASSIFYS
+        recommend_articles = Article.objects.filter(is_recommend=True)[:6]
         # 点击最高文章
         click_articles = Article.objects.all().order_by('look_nums')[:5]
 
@@ -81,9 +127,10 @@ class ArticleView(View):
         return  render(request, 'article.html',{
             'article': article[0],
             'click_articles': click_articles,
+            'recommend_articles': recommend_articles,
             'same_as_articles': same_as_articles,
-            # 'up_article': up_article,
-            # 'down_article': down_article,
+            'up_article': up_article,
+            'down_article': down_article,
         })
 
 # 点赞
@@ -106,7 +153,6 @@ class Search(View):
         if keyboard:
             articles = all_articles.filter(Q(title__contains=keyboard)|Q(author__icontains=keyboard)\
             |Q(classify__icontains=keyboard)|Q(content__in=keyboard))
-            print(articles)
         else:
             return HttpResponse('未找到')
 

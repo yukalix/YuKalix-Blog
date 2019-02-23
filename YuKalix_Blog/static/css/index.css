@@ -83,7 +83,7 @@ h3.blogtitle:hover a { color: #000 }
 .links ul li:hover { background: #fff; box-shadow: #000 1px 1px 10px; }
 .links ul li:hover a { color: #096 }
 /*wx*/
-.weixin { width: 100%; background: #FFF; border-radius: 10px; overflow: hidden; margin: 20px 0 }
+.weixin { width: 100%; background: #FFF; border-radius: 10px; overflow: hidden;}
 .weixin img { width: 100%; height: auto }
 /* ��ҳ */
 .pagelist { text-align: center; color: #666; width: 100%; clear: both; margin: 20px 0; padding-top: 20px }
@@ -125,7 +125,7 @@ h3.blogtitle:hover a { color: #000 }
 .news_pl { margin: 10px 0; width: 100%; background: #FFF; border-radius: 10px; overflow: hidden; margin: 20px 0 }
 .news_pl h2 { background: url(../images/newsbg03.png) no-repeat left 10px center; border-bottom: #000 2px solid; line-height: 40px; font-size: 14px; padding-left: 30px; color: #000 }
 .xzsm ul, .ffsm ul { padding: 20px; line-height: 24px; border-top: 6px solid #a6b5c5; }
-.bt-blue { float: left; line-height: 40px; height: 40px; background: #1e8ec5; width: 100px; text-align: center; border-radius: 5px }
+.bt-blue { float: left; line-height: 40px; height: 40px; background: #1e8ec5; width: 150px; text-align: center; border-radius: 5px }
 .bt-blue a { color: #fff }
 /*ģ�����*/
 .tuijianmb { background: #fff; overflow: hidden; width: 100%; clear: both; border-radius: 10px; }

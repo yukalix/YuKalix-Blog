@@ -3,7 +3,7 @@ import xadmin
 
 from .models import Banner, AboutMeInfo
 from .models import AboutMeArticle
-from .models import Article,ArticleTag
+from .models import Article,ArticleTag, ShareRecourse
 from .models import MessageUserPhoto, Message, Blogroll
 # 管理平台主题更改
 class BaseSetting(object):
@@ -26,6 +26,7 @@ class GlobalSetting(object):
 class BannerAdmin(object):
     list_display = ('baner_describe', 'add_time')
 
+
 # 关于我信息
 class AboutMeInfoAdmin(object):
     # 图标
@@ -34,12 +35,11 @@ class AboutMeInfoAdmin(object):
     style_fields = {'goods_desc': 'ueditor'}
     # search_fields  = ('add_time')
 
-
 class AboutMeArticleAdmin(object):
     list_display = ('title', 'article')
 
 
-
+# 文章
 class ArticleTagAdmin(object):
     list_display = search_fields = list_filter = ['id', 'tag_name']
     list_editable = ['tag_name']
@@ -51,6 +51,9 @@ class ArticleTagAdmin(object):
 class ArticleAdmin(object):
     list_display = ('title', 'is_recommend')
 
+# 资源
+class ShareRecourseAdmin(object):
+    list_display = ('name', 'intro', 'path', 'passwd', 'add_time')
 
 # 留言
 class MessageUserPhotoAdmin(object):
@@ -73,6 +76,7 @@ xadmin.site.register(AboutMeArticle, AboutMeArticleAdmin)
 
 xadmin.site.register(ArticleTag,ArticleTagAdmin)
 xadmin.site.register(Article, ArticleAdmin)
+xadmin.site.register(ShareRecourse, ShareRecourseAdmin)
 
 xadmin.site.register(MessageUserPhoto)
 xadmin.site.register(Message, MessageAdmin)

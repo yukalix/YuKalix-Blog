@@ -51,6 +51,7 @@
       <ul id="list" style="display:none;">
           {% for article in new_articles %}
           <li>
+           {% ifequal 1 article.is_original  %}<img src="{% static 'images/original.jpg' %}" style="float: right;" width="50" height="50">{% endifequal %}
             <h3 class="blogtitle"><a href="{% url 'blog:article' article.classify article.id %}" target="_blank" >{{ article.title }}</a></h3>
             <div class="bloginfo"><span class="blogpic"><a href="{% url 'blog:article' article.classify article.id %}" title=""><img src="{{ MEDIA_URL }}{{ article.image }}"  /></a></span>
                 <p>{{ article.intro }}</p>

@@ -47,32 +47,20 @@
     <!--share end-->
     <div class="zsm"><p>一分钱也是爱，你说多少就多少</p><img src="{% static 'images/zsm.jpg' %}"></div>
     </div>
-    <!--infos end-->
-    <div class="xzsm">
-    <ul>
-          <li><b>下载说明：</b></li>
-          <li>1、解压密码：yangqq.com</li>
-          <li>2、只有部分模板会提供多页面下载，未加说明都是只有一个首页index.html模板。</li>
-          <li>3、如果您发现模板有错，或者您有其他更好的意见、建议请给我们留言，我们会及时处理！</li>
-          <li>4、如果您遇到什么问题，也可加入本站互动QQ群 280998807(交流群 )&nbsp; 291195645（交流群） 280998843（技术群）咨询！</li>
-          <li style="color:#f00">*本站个人博客模板，均为杨青本人设计，个人可以使用，但是未经许可不得用于任何商业目的，如若发现，必追求其法律责任*</li>
-    </ul>
-    </div>
     <div class="ffsm">
     <ul>
-      <p><b>付费说明：</b></p>
-      <p>1、<b>安装cms后台，费用是300-500，包括后台调试以及页面模板修改.</b></p>
-      <p>2、请加我微信 yangqq_1987，或者扫一扫右边兔子头像的二维码。备注“博客” </p>
-      <p><img src="{% static 'images/grwx.png' %}"></p>
-      <p>3、系统安装只限定于帝国cms，并且支持php安装，虚拟主机，请选择linux系统</p>
-      <p>4、系统安装完毕后，会给你一个后台管理操作文档。只需会发信息即可。</p>
-      <p>5、有基础的，会帝国cms的，你可以自己下载，修改模板，调试代码。</p>
+      <li><b>转载说明：</b></li>
+      <li>&nbsp&nbsp&nbsp&nbsp本站文章版权归原作者及原出处所有 。
+          本站是一个个人学习交流的平台，网站上部分文章为转载，并不用于任何商业目的，我们已经尽可能的对作者和来源进行了通告，
+          但是能力有限或疏忽，造成漏登，请及时联系我们，我们将根据著作权人的要求，立即更正或者删除有关内容。本站拥有对此声明的最终解释权。</li>
+
+        <li>&nbsp&nbsp&nbsp&nbsp声明：该文章系转载，登载该文章目的为更广泛的传递市场信息，不代表跟公司赞同其观点。文章内容仅供参考。</li>
       </ul>
     </div>
 
     <div class="nextinfo">
-{#      <p>上一篇：<a href="{% url 'blog:article' up_article.classify up_article.id %}" >{{ up_article.title }}</a></p>#}
-{#      <p>下一篇：<a href="{% url 'blog:article' down_article.classify down_article.id %}">{{ down_article.title }}</a></p>#}
+      <p>上一篇：<a href="{% url 'blog:article' up_article.classify up_article.id %}" >{{ up_article.title }}</a></p>
+      <p>下一篇：<a href="{% url 'blog:article' down_article.classify down_article.id %}">{{ down_article.title }}</a></p>
     </div>
     <div class="otherlink">
       <h2>相关文章</h2>
@@ -101,21 +89,11 @@
     <div class="paihang">
       <h2 class="ab_title"><a href="/">本栏推荐</a></h2>
       <ul>
-        <li><b><a href="/" target="_blank">住在手机里的朋友</a></b>
-          <p>对于刚毕业的学生来说，想学习建网站，掌握一技之长，最简单的入门无学...</p>
+          {% for article in recommend_articles %}
+            <li><b><a href="{% url 'blog:article' article.classify article.id %}" target="_blank">{{ article.title }}</a></b>
+          <p>{{ article.intro }}</p>
         </li>
-        <li><b><a href="/" target="_blank">教你怎样用欠费手机拨打电话</a></b>
-          <p>对于刚毕业的学生来说，想学习建网站，掌握一技之长，最简单的入门...</p>
-        </li>
-        <li><b><a href="/" target="_blank">原来以为，一个人的勇敢是，删掉他的手机号码</a></b>
-          <p>.先前发表过一篇文章《如果要学习web前端开发，需要学习什么？》</p>
-        </li>
-        <li><b><a href="/" target="_blank">手机的16个惊人小秘密，据说99.999%的人都不知</a></b>
-          <p>对于刚毕业的学生来说，.需要学习什么？》</p>
-        </li>
-        <li><b><a href="/" target="_blank">你面对的是生活而不是手机</a></b>
-          <p>.最简单的入门无非就是学会html和css，先前发表过一篇文章...</p>
-        </li>
+          {% endfor %}
       </ul>
       <div class="ad"><img src="{% static 'images/ad300x100.jpg' %}"></div>
     </div>
