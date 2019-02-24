@@ -88,12 +88,15 @@
       </form>
     </div>
     <div class="paihang">
-      <h2 class="ab_title"><a href="/">点击排行</a></h2>
+      <h2 class="ab_title"><a href="/">站点统计</a></h2>
       <ul>
-          {% for article in click_articles %}
-             <li><b><a href="{% url 'blog:article' article.classify article.id %}" target="_blank">{{ article.title }}</a></b><p><i><img src="{{ MEDIA_URL }}{{ article.image }}"></i>{{ article.intro}}</p>
-        </li>
-          {% endfor %}
+          <li><b>总阅览数:{{ article.get_all_look_nums }}</b></li>
+          <li><b>今日阅读量:{{ article.get_all_today_look_nums }}</b></li>
+          <li><b>总访问数:</b></li>
+          <li><b>今天访问者数:</b></li>
+          <li><b>今天访问者数:</b></li>
+          <li><b>现在在线的访问者数:</b></li>
+
       </ul>
     </div>
     <div class="links">

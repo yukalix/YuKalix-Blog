@@ -14,6 +14,7 @@ from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 class Index(View):
 
     def get(self, request):
+        article = Article()
         banners = Banner.objects.all().order_by('-id')[:3]
         info = AboutMeInfo.objects.last()
         blogrolls = Blogroll.objects.all()
@@ -24,15 +25,16 @@ class Index(View):
         # 最新文章
         new_articles = articles.order_by('-add_time')
         # 点击最高文章
-        click_articles = articles.order_by('-look_nums')[:5]
+        # click_articles = articles.order_by('-look_nums')[:5]
         return render(request, 'index.html',{
+            'article': article,
             'banners': banners,
             'info': info,
             # 'classifys': classifys,
             'blogrolls': blogrolls,
             'recommend_articles': recommend_articles,
             'new_articles': new_articles,
-            'click_articles': click_articles,
+            # 'click_articles': click_articles,
         })
 
 # 关于我页面
@@ -52,7 +54,8 @@ class Study(View):
     def get(self, request):
         classifies = Article.CLASSIFYS
         classify = request.GET.get('classify','python')
-        same_as_articles = Article.objects.filter(classify=classify)
+        all_articles = Article.objects.all()
+        same_as_articles =all_articles.filter(classify=classify)
 
         # 分页
         try:
@@ -67,7 +70,7 @@ class Study(View):
         # 本栏推荐
         recommend_articles = same_as_articles.filter(is_recommend=True)
         # 点击排行
-        click_articles = same_as_articles.order_by('-look_nums')[:5]
+        click_articles = all_articles.order_by('-look_nums')[:5]
 
         return render(request, 'study.html', {
             'classifies': classifies,
@@ -103,8 +106,8 @@ class ArticleView(View):
         # 构建一个空的
         none = {
             'classify': '#',
-            'id': 0,
-            'title': '',
+            'id': '1',
+            'title': ' ',
         }
         up_article = same_as_articles.filter(id__lt=id).first()
         if not up_article:
@@ -119,7 +122,7 @@ class ArticleView(View):
         # classifys = Article.CLASSIFYS
         recommend_articles = Article.objects.filter(is_recommend=True)[:6]
         # 点击最高文章
-        click_articles = Article.objects.all().order_by('look_nums')[:5]
+        click_articles = Article.objects.all().order_by('-look_nums')[:5]
 
 
         # 获取文章标签

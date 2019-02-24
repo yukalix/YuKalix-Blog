@@ -93,6 +93,31 @@ class Article(models.Model):
     def __str__(self):
         return self.title
 
+# 获取总的本站浏览量
+    def get_all_look_nums(self):
+        all_look_nums = Article.objects.values('look_nums')
+        all_look_num = 0
+        for i in all_look_nums:
+            all_look_num += i['look_nums']
+        return all_look_num
+# 获取今天阅读量
+    def get_all_today_look_nums(self):
+        import datetime
+        today = datetime.date.today()
+        oneday = datetime.timedelta(days=1)
+        # 后天
+        after_tomorrow = today + oneday
+
+        # 按理说应该是小于今天大于昨天,才是今天的访问量
+        # 这里以今天的基准点是天,没取后面时间
+        # print(today)
+        # 并且操作  大于今天2018-01-01 就是今天的访问    2018-01-0<obj<2018-01-02
+        today_articles = Article.objects.filter(add_time__lt=after_tomorrow,add_time__gt=today).values()
+        today_look_nums = 0
+        for i in today_articles:
+            today_look_nums += i['look_nums']
+        return today_look_nums
+
 # 资源共享
 class ShareRecourse(models.Model):
     image = models.ImageField(verbose_name='资源图片', upload_to='resourse/%Y/%m/%d', blank=True)
