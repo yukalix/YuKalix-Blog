@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     # 分页
     'pure_pagination',
     # add app
-    'blog',
+    'apps.blog',
+    'apps.web_statistics'
 ]
 
 MIDDLEWARE = [

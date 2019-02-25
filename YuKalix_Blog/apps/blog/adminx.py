@@ -18,7 +18,7 @@ class GlobalSetting(object):
     # 设置base_site.html的Footer
     site_footer = 'YuKalix小小窝'
     # 设置导航折叠,以每一个app为一个折叠框
-    # menu_style = 'accordion'
+    menu_style = 'accordion'
 
 
 

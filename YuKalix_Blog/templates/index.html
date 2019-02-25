@@ -90,13 +90,11 @@
     <div class="paihang">
       <h2 class="ab_title"><a href="/">站点统计</a></h2>
       <ul>
-          <li><b>总阅览数:{{ article.get_all_look_nums }}</b></li>
-          <li><b>今日阅读量:{{ article.get_all_today_look_nums }}</b></li>
-          <li><b>总访问数:</b></li>
-          <li><b>今天访问者数:</b></li>
-          <li><b>今天访问者数:</b></li>
-          <li><b>现在在线的访问者数:</b></li>
-
+        <li><b>总访问数:{{ all_visit_nums }}</b></li>
+        <li><b>今天访问者数:{{ day_visit_nums }}</b></li>
+        <li><b>总阅读量:{{ article.get_all_look_nums }}</b></li>
+        <li><b>今日阅读量:{{ today_look_nums }}</b></li>
+        <li><b>现在在线的访问者数:</b></li>
       </ul>
     </div>
     <div class="links">

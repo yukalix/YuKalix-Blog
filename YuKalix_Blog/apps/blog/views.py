@@ -8,13 +8,17 @@ from .forms import MessageForm
 from .models import Banner, AboutMeInfo
 from .models import AboutMeArticle, Article, ShareRecourse
 from .models import MessageUserPhoto,Message, Blogroll
+from apps.web_statistics.models import *
+from  apps.web_statistics.views import change_info,set_day_look_number
 
 from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 # 博客首页
 class Index(View):
 
     def get(self, request):
-        article = Article()
+        # 访问统计
+        change_info(request)
+
         banners = Banner.objects.all().order_by('-id')[:3]
         info = AboutMeInfo.objects.last()
         blogrolls = Blogroll.objects.all()
@@ -26,8 +30,15 @@ class Index(View):
         new_articles = articles.order_by('-add_time')
         # 点击最高文章
         # click_articles = articles.order_by('-look_nums')[:5]
+
+        print(timezone.now())
         return render(request, 'index.html',{
-            'article': article,
+            # 站点统计
+            'article': Article(),
+            'today_look_nums': DayLookNumber.get_today_look_nums(request),
+            'all_visit_nums': VisitNumber.get_all_visit_nums(request),
+            'day_visit_nums': DayNumber.get_day_visit_nums(request),
+
             'banners': banners,
             'info': info,
             # 'classifys': classifys,
@@ -93,6 +104,8 @@ class Share(View):
 class ArticleView(View):
 
     def get(self, request, classify, id):
+        set_day_look_number(request)
+
         article = Article.objects.filter(id=id)
         # 浏览量
         look_num = article[0].look_nums
@@ -113,7 +126,7 @@ class ArticleView(View):
         if not up_article:
             up_article = none
         down_article = same_as_articles.filter(id__gt=id).first()
-        print(down_article)
+        # print(down_article)
         if not down_article:
             print('ok')
             down_article = none
