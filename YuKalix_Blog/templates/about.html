@@ -1,20 +1,11 @@
+{% extends 'base.html' %}
 {% load static %}
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>YuKalix个人博客 - 一个走在全栈开发师之路的程序猿个人博客网站</title>
-<meta name="keywords" content="个人博客,YuKalix个人博客" />
-<meta name="description" content="YuKalix个人博客，是一个走在全栈开发师之路的程序猿的个人网站，提供个人成长经历,个人经验,遇到的各种填坑方式" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="{% static 'css/base.css' %}" rel="stylesheet">
-<link href="{% static 'css/index.css' %}" rel="stylesheet">
-<link href="{% static 'css/m.css' %}" rel="stylesheet">
-<!--[if lt IE 9]>
-<script src="{% static 'js/modernizr.js' %}></script>
-<![endif]-->
-</head>
-<body>
+
+{% block title %}
+    关于我
+{% endblock %}
+{% block body %}
+    <body>
 {% include 'blog_header.html' %}
 <div class="line46"></div>
 <div class="blank"></div>
@@ -58,4 +49,4 @@
 </article>
 {% include 'blog_footer.html' %}
 </body>
-</html>
+{% endblock %}

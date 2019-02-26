@@ -1,21 +1,11 @@
+{% extends 'base.html' %}
 {% load static %}
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>留言</title>
-<meta name="keywords" content="留言" />
-<meta name="description" content="	留言" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link REL="SHORTCUT ICON" HREF="{% static "images/favicon.ico" %}"/>
-<link href="{% static 'css/base.css' %}" rel="stylesheet">
-<link href="{% static 'css/index.css' %}" rel="stylesheet">
-<link href="{% static 'css/m.css' %}" rel="stylesheet">
-<!--[if lt IE 9]>
-<script src="{% static 'js/modernizr.js' %}"></script>
-<![endif]-->
-</head>
-<body>
+
+{% block title %}
+    留言
+{% endblock %}
+{% block body %}
+    <body>
 {% include 'blog_header.html' %}
 <div class="line46"></div>
 <div class="blank"></div>
@@ -24,11 +14,11 @@
     <div class="infos">
       <div class="newsview">
         <h2 class="intitle">您现在的位置是：<a href='/'>首页</a>&nbsp;>&nbsp;留言</h2>
-         <div class="gbook"> 
+         <div class="gbook">
             {% for message in all_message_page.object_list %}
              <div class="fb">
               <ul>
-                <span class="tximg"><img src="{{ message.user_photo }}"></span>
+                <span class="tximg"><img src="{{ message.user_photo }}" width="50" height="50"></span>
                 <p class="fbtime"><span>{{ message.add_time }}</span> {{ message.user_name }}</p>
                 <p class="fbinfo">{{ message.message }}</p>
               </ul>
@@ -50,7 +40,7 @@
             {% for photo in message_photos %}
            <i>
           <input type="radio" value= "{{ MEDIA_URL }}{{ photo.user_photo }}" id= "{{ photo.id }}" name="mycall" style="display:none">
-          <img id="{{ photo.id }}" src="{{ MEDIA_URL }}{{ photo.user_photo }}" onclick="myFun(this.id)">
+          <img id="{{ photo.id }}" src="{{ MEDIA_URL }}{{ photo.user_photo }}" onclick="myFun(this.id)" width="50" height="50">
            </i>
             {% endfor %}
 
@@ -79,7 +69,7 @@
       }
     }
   }
-</script> 
+</script>
       </div>
     </div>
   </div>
@@ -105,5 +95,5 @@
 </article>
 {% include 'blog_footer.html' %}
 </body>
-</html>
+{% endblock %}
 

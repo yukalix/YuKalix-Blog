@@ -4,6 +4,7 @@ from django.shortcuts import render
 from .models import *
 from django.utils import timezone
 
+from django.views.decorators.cache import cache_page
 
 # 自定义的函数，不是视图
 # 单日浏览数增加

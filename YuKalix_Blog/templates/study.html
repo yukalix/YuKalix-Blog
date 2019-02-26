@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
-<script src="{% static 'js/page.js' %}"></script>
+
+{% block title %}
+    学无止境
+{% endblock %}
 {% block body %}
 <body>
 {% include 'blog_header.html' %}

@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>YuKalix个人博客 - 一个走在全栈开发师之路的程序猿个人博客网站</title>
+<title>{% block title %}YuKalix个人博客 - 一个走在全栈开发师之路的程序猿个人博客网站{% endblock %}--YuKalix个人博客</title>
 <meta name="keywords" content="个人博客,YuKalix个人博客" />
 <meta name="description" content="YuKalix个人博客，是一个走在全栈开发师之路的程序猿的个人网站，提供个人成长经历,个人经验,遇到的各种填坑方式" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,10 +17,16 @@
 <script src="{% static 'js/modernizr.js' %}"></script>
 <![endif]-->
 <script src="{% static 'js/page.js' %}"></script>
+{#        <embed height="50" width="100" src="{% static 'music.mp3' %}">#}
 </head>
-    {% block body %}
-    {% endblock %}
 
+{% block body %}
+{% endblock %}
+
+<script color="0,0,0" opacity="0.7" count="124" src="{% static '/js/canvas-nest.js' %}"></script>
+{#<script src="//lib.baomitu.com/jquery/3.3.1/jquery.min.js"></script>#}
+{#<script id="myhk" src="https://music.limh.me/player/js/player.js" key="155116921587" m="1"></script>#}
 {% block js %}
+
 {% endblock %}
 </html>

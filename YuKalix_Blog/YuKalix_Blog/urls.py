@@ -18,8 +18,13 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
 import xadmin
+
+from django.shortcuts import render, HttpResponse, redirect
+def love(request):
+    return render(request, 'welcome.html')
 urlpatterns = [
     path('admin/', xadmin.site.urls),
+    path('love/',love ),
     path('', include('apps.blog.urls', namespace='blog')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('ueditor', include('DjangoUeditor.urls')),

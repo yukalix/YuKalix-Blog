@@ -12,6 +12,7 @@ from apps.web_statistics.models import *
 from  apps.web_statistics.views import change_info,set_day_look_number
 
 from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
+
 # 博客首页
 class Index(View):
 
