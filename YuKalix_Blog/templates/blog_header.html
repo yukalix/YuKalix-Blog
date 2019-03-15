@@ -1,27 +1,30 @@
 <header>
-  <div id="mnav">
-    <div class="logo"><a href="/">YuKalix个人博客</a></div>
-    <h2 id="mnavh"><span class="navicon"></span></h2>
-    <ul id="starlist">
-      <li><a href="/" {% ifequal '/' request.path %}style="color:  #f65a8a" {% endifequal %}>网站首页</a></li>
-      <li><a href="{% url 'blog:study' %}" {% ifequal '/study/' request.path %} style="color:  #f65a8a" {% endifequal %} >学无止境</a></li>
-      <li><a href="{% url 'blog:share' %}" {% ifequal '/share/' request.path %} style="color:  #f65a8a" {% endifequal %} >资源共享</a></li>
-      <li><a href="{% url 'blog:about_me' %}" {% ifequal '/about_me/' request.path %}style="color:  #f65a8a" {% endifequal %}>关于我</a></li>
-      <li><a href="{% url 'blog:message' %}" {% ifequal '/message/' request.path %} style="color:  #f65a8a" {% endifequal %}>留言</a></li>
-      <li><a href="/admin/" {% ifequal '/message/' request.path %} style="color:  #f65a8a" {% endifequal %}>后台管理</a></li>
-    </ul>
-  </div>
-  <script>
-window.onload = function ()
-{
-	var oH2 = document.getElementById("mnavh");
-	var oUl = document.getElementById("starlist");
-	oH2.onclick = function ()
-	{
-		var style = oUl.style;
-		style.display = style.display === "block" ? "none" : "block";
-		oH2.className = style.display === "block" ? "open" : ""
-	}
-}
-</script>
+    <div id="mnav">
+        <div class="logo"><a href="/">YuKalix个人博客</a></div>
+        <h2 id="mnavh"><span class="navicon"></span></h2>
+        <ul id="starlist">
+            <li><a href="/" {% ifequal '/' request.path %}style="color:  #f65a8a" {% endifequal %}>网站首页</a></li>
+            <li><a href="{% url 'blog:study' %}" {% ifequal '/study/' request.path %}
+                   style="color:  #f65a8a" {% endifequal %} >学无止境</a></li>
+            <li><a href="{% url 'blog:share' %}" {% ifequal '/share/' request.path %}
+                   style="color:  #f65a8a" {% endifequal %} >资源共享</a></li>
+            <li><a href="{% url 'blog:about_me' %}"
+                   {% ifequal '/about_me/' request.path %}style="color:  #f65a8a" {% endifequal %}>关于我</a></li>
+            <li><a href="{% url 'blog:message' %}" {% ifequal '/message/' request.path %}
+                   style="color:  #f65a8a" {% endifequal %}>留言</a></li>
+            <li><a href="/admin/" {% ifequal '/message/' request.path %}
+                   style="color:  #f65a8a" {% endifequal %}>后台管理</a></li>
+        </ul>
+    </div>
+    <script>
+        window.onload = function () {
+            var oH2 = document.getElementById("mnavh");
+            var oUl = document.getElementById("starlist");
+            oH2.onclick = function () {
+                var style = oUl.style;
+                style.display = style.display === "block" ? "none" : "block";
+                oH2.className = style.display === "block" ? "open" : ""
+            }
+        }
+    </script>
 </header>

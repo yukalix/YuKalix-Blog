@@ -1,129 +1,306 @@
 {% load static %}
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Welcome</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <style type="text/css">
-            @keyframes wpSuperSnow_l {0% {opacity:0;} 25% {opacity:1;} 100% {opacity:0;
-            transform:translate3D(500px,1500px,0) rotate(250deg);}}@keyframes wpSuperSnow_r
-            {0% {opacity:0;} 25% {opacity:1;} 100% {opacity:0; transform:translate3D(-500px,1500px,0)
-            rotate(-500deg);}}@-webkit-keyframes wpSuperSnow_l {0% {opacity:0;} 25%
-            {opacity:1;} 100% {opacity:0; -webkit-transform:translate3D(500px,1500px,0)
-            rotate(250deg);}}@-webkit-keyframes wpSuperSnow_r {0% {opacity:0;} 25%
-            {opacity:1;} 100% {opacity:0; -webkit-transform:translate3D(-500px,1500px,0)
-            rotate(-500deg);}}@-moz-keyframes wpSuperSnow_l {0% {opacity:0;} 25% {opacity:1;}
-            100% {opacity:0; -moz-transform:translate3D(500px,1500px,0) rotate(250deg);}}@-moz-keyframes
-            wpSuperSnow_r {0% {opacity:0;} 25% {opacity:1;} 100% {opacity:0; -moz-transform:translate3D(-500px,1500px,0)
-            rotate(-500deg);}}@-ms-keyframes wpSuperSnow_l {0% {opacity:0;} 25% {opacity:1;}
-            100% {opacity:0; -ms-transform:translate3D(500px,1500px,0) rotate(250deg);}}@-ms-keyframes
-            wpSuperSnow_r {0% {opacity:0;} 25% {opacity:1;} 100% {opacity:0; -ms-transform:translate3D(-500px,1500px,0)
-            rotate(-500deg);}}@keyframes wpSuperSnowFlake_l {0% {opacity:0;} 25% {opacity:1;}
-            100% {opacity:0; transform:translate3D(500px,1500px,0) rotateY(720deg)
-            rotate(250deg);}}@keyframes wpSuperSnowFlake_r {0% {opacity:0;} 25% {opacity:1;}
-            100% {opacity:0; transform:translate3D(-500px,1500px,0) rotateY(-720deg)
-            rotate(-500deg);}}@-webkit-keyframes wpSuperSnowFlake_l {0% {opacity:0;}
-            25% {opacity:1;} 100% {opacity:0; -webkit-transform:translate3D(500px,1500px,0)
-            rotateY(720deg) rotate(250deg);}}@-webkit-keyframes wpSuperSnowFlake_r
-            {0% {opacity:0;} 25% {opacity:1;} 100% {opacity:0; -webkit-transform:translate3D(-500px,1500px,0)
-            rotateY(-720deg) rotate(-500deg);}}@-moz-keyframes wpSuperSnowFlake_l {0%
-            {opacity:0;} 25% {opacity:1;} 100% {opacity:0; -moz-transform:translate3D(500px,1500px,0)
-            rotateY(720deg) rotate(250deg);}}@-moz-keyframes wpSuperSnowFlake_r {0%
-            {opacity:0;} 25% {opacity:1;} 100% {opacity:0; -moz-transform:translate3D(-500px,1500px,0)
-            rotateY(-720deg) rotate(-500deg);}}@-ms-keyframes wpSuperSnowFlake_l {0%
-            {opacity:0;} 25% {opacity:1;} 100% {opacity:0; -ms-transform:translate3D(500px,1500px,0)
-            rotateY(720deg) rotate(250deg);}}@-ms-keyframes wpSuperSnowFlake_r {0%
-            {opacity:0;} 25% {opacity:1;} 100% {opacity:0; -ms-transform:translate3D(-500px,1500px,0)
-            rotateY(-720deg) rotate(-500deg);}}
-        </style>
-        <link rel="stylesheet" href="{% static 'css/main.css' %}">
-    </head>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Welcome</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type="text/css">
+        @keyframes wpSuperSnow_l {
+            0% {
+                opacity: 0;
+            }
+            25% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translate3D(500px, 1500px, 0) rotate(250deg);
+            }
+        }
 
-    <body class="">
-        <!-- Wrapper -->
-        <div id="wrapper">
-            <!-- Main -->
-            <section id="main">
-                <header>
+        @keyframes wpSuperSnow_r {
+            0% {
+                opacity: 0;
+            }
+            25% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translate3D(-500px, 1500px, 0) rotate(-500deg);
+            }
+        }
+
+        @-webkit-keyframes wpSuperSnow_l {
+            0% {
+                opacity: 0;
+            }
+            25% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                -webkit-transform: translate3D(500px, 1500px, 0) rotate(250deg);
+            }
+        }
+
+        @-webkit-keyframes wpSuperSnow_r {
+            0% {
+                opacity: 0;
+            }
+            25% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                -webkit-transform: translate3D(-500px, 1500px, 0) rotate(-500deg);
+            }
+        }
+
+        @-moz-keyframes wpSuperSnow_l {
+            0% {
+                opacity: 0;
+            }
+            25% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                -moz-transform: translate3D(500px, 1500px, 0) rotate(250deg);
+            }
+        }
+
+        @-moz-keyframes wpSuperSnow_r {
+            0% {
+                opacity: 0;
+            }
+            25% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                -moz-transform: translate3D(-500px, 1500px, 0) rotate(-500deg);
+            }
+        }
+
+        @-ms-keyframes wpSuperSnow_l {
+            0% {
+                opacity: 0;
+            }
+            25% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                -ms-transform: translate3D(500px, 1500px, 0) rotate(250deg);
+            }
+        }
+
+        @-ms-keyframes wpSuperSnow_r {
+            0% {
+                opacity: 0;
+            }
+            25% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                -ms-transform: translate3D(-500px, 1500px, 0) rotate(-500deg);
+            }
+        }
+
+        @keyframes wpSuperSnowFlake_l {
+            0% {
+                opacity: 0;
+            }
+            25% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translate3D(500px, 1500px, 0) rotateY(720deg) rotate(250deg);
+            }
+        }
+
+        @keyframes wpSuperSnowFlake_r {
+            0% {
+                opacity: 0;
+            }
+            25% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translate3D(-500px, 1500px, 0) rotateY(-720deg) rotate(-500deg);
+            }
+        }
+
+        @-webkit-keyframes wpSuperSnowFlake_l {
+            0% {
+                opacity: 0;
+            }
+            25% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                -webkit-transform: translate3D(500px, 1500px, 0) rotateY(720deg) rotate(250deg);
+            }
+        }
+
+        @-webkit-keyframes wpSuperSnowFlake_r {
+            0% {
+                opacity: 0;
+            }
+            25% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                -webkit-transform: translate3D(-500px, 1500px, 0) rotateY(-720deg) rotate(-500deg);
+            }
+        }
+
+        @-moz-keyframes wpSuperSnowFlake_l {
+            0% {
+                opacity: 0;
+            }
+            25% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                -moz-transform: translate3D(500px, 1500px, 0) rotateY(720deg) rotate(250deg);
+            }
+        }
+
+        @-moz-keyframes wpSuperSnowFlake_r {
+            0% {
+                opacity: 0;
+            }
+            25% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                -moz-transform: translate3D(-500px, 1500px, 0) rotateY(-720deg) rotate(-500deg);
+            }
+        }
+
+        @-ms-keyframes wpSuperSnowFlake_l {
+            0% {
+                opacity: 0;
+            }
+            25% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                -ms-transform: translate3D(500px, 1500px, 0) rotateY(720deg) rotate(250deg);
+            }
+        }
+
+        @-ms-keyframes wpSuperSnowFlake_r {
+            0% {
+                opacity: 0;
+            }
+            25% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                -ms-transform: translate3D(-500px, 1500px, 0) rotateY(-720deg) rotate(-500deg);
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+
+<body class="">
+<!-- Wrapper -->
+<div id="wrapper">
+    <!-- Main -->
+    <section id="main">
+        <header>
                     <span class="avatar">
                         <img src="{% static 'images/headimg_dl' %}" alt="">
                     </span>
-                    <h1>
-                        Welcome
-                    </h1>
-                    <p>
-                        也许，只有真正动心了,才会为她所做的一件小事在旁人看来无所谓，而在她看来却是心碎。
-                    </p>
-                </header>
-                <footer>
-                    <ul class="icons">
-                        <li>
-                            <a href="" class="fa-home">
-                                首页
-                            </a>
-                        </li>
-                        <li>
-                            <a href=""
-                            class="fa-qq">
-                                QQ
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" class="fa-weibo">
-                                博客
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" class="fa-heart">
-                                影视
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" class="fa-heart">
-                                导航
-                            </a>
-                        </li>
-                    </ul>
-                </footer>
-            </section>
-            <!-- Footer -->
-            <footer id="footer">
-                <ul class="copyright">
-                    <li>
-                        ©
-                        <a href="">
-                            xxxxx
-                        </a>
-                        .版权所有
-                    </li>
-                </ul>
-            </footer>
-        </div>
-        <!-- Scripts -->
-        <script>
-            if ('addEventListener' in window) {
-                window.addEventListener('load',
-                function() {
-                    document.body.className = document.body.className.replace(/\bis-loading\b/, '');
-                });
-                document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie': '');
-            }
-        </script>
-        <script src="{% static 'js/jquery-2.2.4.min.js' %}"></script>
-        <script src="{% static 'js/su.js' %}">
-        </script>
-        <script type="text/javascript">
-            jQuery(document).ready(function($) {
-                $('body').wpSuperSnow({
-                    flakes: ['{% static 'images/007.png' %}', '{% static 'images/006.png' %}', '{% static 'images/004.png' %}', '{% static 'images/002.png' %}', '{% static 'images/001.png' %}', '{% static 'images/003.png' %}', '{% static 'images/002.png' %}', '{% static 'images/001.png' %}'],
-                    totalFlakes: '290',
-                    zIndex: '999999',
-                    maxSize: '30',
-                    maxDuration: '20',
-                    useFlakeTrans: false
-                });
+            <h1>
+                Welcome
+            </h1>
+            <p>
+                也许，只有真正动心了,才会为她所做的一件小事在旁人看来无所谓，而在她看来却是心碎。
+            </p>
+        </header>
+        <footer>
+            <ul class="icons">
+                <li>
+                    <a href="" class="fa-home">
+                        首页
+                    </a>
+                </li>
+                <li>
+                    <a href=""
+                       class="fa-qq">
+                        QQ
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="fa-weibo">
+                        博客
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="fa-heart">
+                        影视
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="fa-heart">
+                        导航
+                    </a>
+                </li>
+            </ul>
+        </footer>
+    </section>
+    <!-- Footer -->
+    <footer id="footer">
+        <ul class="copyright">
+            <li>
+                ©
+                <a href="">
+                    xxxxx
+                </a>
+                .版权所有
+            </li>
+        </ul>
+    </footer>
+</div>
+<!-- Scripts -->
+<script>
+    if ('addEventListener' in window) {
+        window.addEventListener('load',
+            function () {
+                document.body.className = document.body.className.replace(/\bis-loading\b/, '');
             });
-        </script>
-    </body>
+        document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
+    }
+</script>
+<script src="{% static 'js/jquery-2.2.4.min.js' %}"></script>
+<script src="{% static 'js/su.js' %}">
+</script>
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $('body').wpSuperSnow({
+            flakes: ['{% static 'images/007.png' %}', '{% static 'images/006.png' %}', '{% static 'images/004.png' %}', '{% static 'images/002.png' %}', '{% static 'images/001.png' %}', '{% static 'images/003.png' %}', '{% static 'images/002.png' %}', '{% static 'images/001.png' %}'],
+            totalFlakes: '290',
+            zIndex: '999999',
+            maxSize: '30',
+            maxDuration: '20',
+            useFlakeTrans: false
+        });
+    });
+</script>
+</body>
 
 </html>

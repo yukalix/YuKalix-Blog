@@ -6,56 +6,57 @@
 {% endblock %}
 {% block body %}
     <body>
-{% include 'blog_header.html' %}
-<div class="line46"></div>
-  <div class="blank"></div>
-<article>
-  <div class="leftbox">
-    <div class="tuijian">
-      <h2 class="hometitle">资源共享</h2>
-      <ul  id="list" style="display:none;">
-        {% for recours in recourses %}
-        <li>
-          <div class="tpic"><img src="{{ MEDIA_URL }}{{ recours.image }}"></div>
-            <b class="readmore">资源介绍</b>
-            <b>{{ recours.name }}</b>
-            <span>{{ recours.intro }}</span>
-            <br>
-            <hr>
-        <p class="bt-blue"><a href="{{ recours.path }}" target="_blank" >下 载&nbsp(密码:{{ recours.passwd }})</a></p>
-        </li>
-        {% endfor %}
-      </ul>
-      <ul id="list2">
-      </ul>
-      <script src="{% static 'js/page2.js' %}"></script>
-    </div>
+    {% include 'blog_header.html' %}
+    <div class="line46"></div>
+    <div class="blank"></div>
+    <article>
+        <div class="leftbox">
+            <div class="tuijian">
+                <h2 class="hometitle">资源共享</h2>
+                <ul id="list" style="display:none;">
+                    {% for recours in recourses %}
+                        <li>
+                            <div class="tpic"><img src="{{ MEDIA_URL }}{{ recours.image }}"></div>
+                            <b class="readmore">资源介绍</b>
+                            <b>{{ recours.name }}</b>
+                            <span>{{ recours.intro }}</span>
+                            <br>
+                            <hr>
+                            <p class="bt-blue"><a href="{{ recours.path }}" target="_blank">下
+                                载&nbsp(密码:{{ recours.passwd }})</a></p>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <ul id="list2">
+                </ul>
+                <script src="{% static 'js/page2.js' %}"></script>
+            </div>
 
-  </div>
-    <div class="rightbox">
+        </div>
+        <div class="rightbox">
 
-    <div class="weixin">
-    <h2 class="ab_title">微信关注</h2>
-    <ul>
-    <img src="{% static 'images/wx.jpg'%}">
-    </ul>
-    </div>
-    </div>
-    <div class="rightbox">
-    <!--infos end-->
-    <div class="xzsm">
-    <ul>
-      <li><b>下载说明：</b></li>
-      <li>1、解压密码：yukalix</li>
-      <li>2、</li>
-      <li>3、如果您发现有其他更好的意见、建议请给我们留言，我们会及时处理！</li>
-      <li>4、如果您遇到什么问题，也可加入本站互动QQ群____621849134(毕业设计群)咨询！</li>
-      <li style="color:#f00">*本站个人原创内容，均为YuKalix本人设计，个人可以使用，但是未经许可不得用于任何商业目的，如若发现，必追求其法律责任*</li>
-    </ul>
-    </div>
-    </div>
+            <div class="weixin">
+                <h2 class="ab_title">微信关注</h2>
+                <ul>
+                    <img src="{% static 'images/wx.jpg' %}">
+                </ul>
+            </div>
+        </div>
+        <div class="rightbox">
+            <!--infos end-->
+            <div class="xzsm">
+                <ul>
+                    <li><b>下载说明：</b></li>
+                    <li>1、解压密码：yukalix</li>
+                    <li>2、</li>
+                    <li>3、如果您发现有其他更好的意见、建议请给我们留言，我们会及时处理！</li>
+                    <li>4、如果您遇到什么问题，也可加入本站互动QQ群____621849134(毕业设计群)咨询！</li>
+                    <li style="color:#f00">*本站个人原创内容，均为YuKalix本人设计，个人可以使用，但是未经许可不得用于任何商业目的，如若发现，必追求其法律责任*</li>
+                </ul>
+            </div>
+        </div>
 
-</article>
-{% include 'blog_footer.html' %}
-</body>
+    </article>
+    {% include 'blog_footer.html' %}
+    </body>
 {% endblock %}

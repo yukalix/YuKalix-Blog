@@ -6,47 +6,47 @@
 {% endblock %}
 {% block body %}
     <body>
-{% include 'blog_header.html' %}
-<div class="line46"></div>
-<div class="blank"></div>
-<article>
-  <div class="leftbox">
-    <div class="infos">
-      <div class="newsview">
-        <h2 class="intitle">您现在的位置是：<a href="/">网站首页</a>&nbsp;&gt;&nbsp;<a href="/">关于我</a></h2>
-        <div class="news_infos">
-            <h1 align="center">{{ article.title }}</h1>
-            {{ article.article|safe }}
+    {% include 'blog_header.html' %}
+    <div class="line46"></div>
+    <div class="blank"></div>
+    <article>
+        <div class="leftbox">
+            <div class="infos">
+                <div class="newsview">
+                    <h2 class="intitle">您现在的位置是：<a href="/">网站首页</a>&nbsp;&gt;&nbsp;<a href="/">关于我</a></h2>
+                    <div class="news_infos">
+                        <h1 align="center">{{ article.title }}</h1>
+                        {{ article.article|safe }}
 
+                    </div>
+                </div>
+            </div>
+            <div class="news_pl">
+                <h2>我要留言</h2>
+                <ul>
+                </ul>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="news_pl">
-      <h2>我要留言</h2>
-      <ul>
-      </ul>
-    </div>
-  </div>
-  <div class="rightbox">
-    <div class="aboutme">
-      <h2 class="ab_title">关于我</h2>
-      <div class="avatar"> <img src="{{ MEDIA_URL }}{{ info.head_portrait }}"> </div>
-      <div class="ab_con">
-        <p>网名：{{ info.nick_name }} | {{ info.name }}</p>
-        <p>职业：{{ info.work }} </p>
-        <p>籍贯：{{ info.place }}</p>
-        <p>邮箱：{{ info.email }}</p>
-        <p>点滴: {{ info.record_tip }}</p>
-      </div>
-    </div>
-    <div class="weixin">
-      <h2 class="ab_title">微信关注</h2>
-      <ul>
-        <img src="{% static 'images/wx.jpg' %}">
-      </ul>
-    </div>
-  </div>
-</article>
-{% include 'blog_footer.html' %}
-</body>
+        <div class="rightbox">
+            <div class="aboutme">
+                <h2 class="ab_title">关于我</h2>
+                <div class="avatar"><img src="{{ MEDIA_URL }}{{ info.head_portrait }}"></div>
+                <div class="ab_con">
+                    <p>网名：{{ info.nick_name }} | {{ info.name }}</p>
+                    <p>职业：{{ info.work }} </p>
+                    <p>籍贯：{{ info.place }}</p>
+                    <p>邮箱：{{ info.email }}</p>
+                    <p>点滴: {{ info.record_tip }}</p>
+                </div>
+            </div>
+            <div class="weixin">
+                <h2 class="ab_title">微信关注</h2>
+                <ul>
+                    <img src="{% static 'images/wx.jpg' %}">
+                </ul>
+            </div>
+        </div>
+    </article>
+    {% include 'blog_footer.html' %}
+    </body>
 {% endblock %}

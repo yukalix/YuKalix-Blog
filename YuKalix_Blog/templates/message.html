@@ -6,94 +6,98 @@
 {% endblock %}
 {% block body %}
     <body>
-{% include 'blog_header.html' %}
-<div class="line46"></div>
-<div class="blank"></div>
-<article>
-  <div class="leftbox">
-    <div class="infos">
-      <div class="newsview">
-        <h2 class="intitle">您现在的位置是：<a href='/'>首页</a>&nbsp;>&nbsp;留言</h2>
-         <div class="gbook">
-            {% for message in all_message_page.object_list %}
-             <div class="fb">
-              <ul>
-                <span class="tximg"><img src="{{ message.user_photo }}" width="50" height="50"></span>
-                <p class="fbtime"><span>{{ message.add_time }}</span> {{ message.user_name }}</p>
-                <p class="fbinfo">{{ message.message }}</p>
-              </ul>
+    {% include 'blog_header.html' %}
+    <div class="line46"></div>
+    <div class="blank"></div>
+    <article>
+        <div class="leftbox">
+            <div class="infos">
+                <div class="newsview">
+                    <h2 class="intitle">您现在的位置是：<a href='/'>首页</a>&nbsp;>&nbsp;留言</h2>
+                    <div class="gbook">
+                        {% for message in all_message_page.object_list %}
+                            <div class="fb">
+                                <ul>
+                                    <span class="tximg"><img src="{{ message.user_photo }}" width="50"
+                                                             height="50"></span>
+                                    <p class="fbtime"><span>{{ message.add_time }}</span> {{ message.user_name }}</p>
+                                    <p class="fbinfo">{{ message.message }}</p>
+                                </ul>
+                            </div>
+                        {% endfor %}
+                        <div class="pages" align="center">
+                            {{ all_message_page.render }}
+                            <p>第{{ all_message_page.number }}页</p>
+                        </div>
+
+                        <div class="gbox">
+                            <form action="{% url 'blog:message' %}" method="post" name="form1" id="form1">
+                                <p><strong>来说点儿什么吧...</strong></p>
+                                <p><span> 您的姓名:</span>
+                                    {{ message_form.name }}<span>{{ errors_obj.name }}</span>
+                                </p>
+                                <p><span>选择头像:</span> *</p>
+                                <p>
+                                    {% for photo in message_photos %}
+                                        <i>
+                                            <input type="radio" value="{{ MEDIA_URL }}{{ photo.user_photo }}"
+                                                   id="{{ photo.id }}" name="mycall" style="display:none">
+                                            <img id="{{ photo.id }}" src="{{ MEDIA_URL }}{{ photo.user_photo }}"
+                                                 onclick="myFun(this.id)" width="50" height="50">
+                                        </i>
+                                    {% endfor %}
+
+                                </p>
+                                <p><span class="tnr">留言内容:</span>
+                                    <textarea name="message" cols="60" rows="12" id="lytext"
+                                              placeholder="{{ errors_obj.message.0 }}"></textarea>
+                                </p>
+                                <p>
+                                    <input type="submit" name="Submit3" value="提交"/>
+                                    <input name="enews" type="hidden" id="enews" value="AddGbook"/>
+                                </p>
+                                {% csrf_token %}
+                            </form>
+                            {#                 {{ message_form }}#}
+                        </div>
+                    </div>
+                    <script>
+                        function myFun(sId) {
+                            var oImg = document.getElementsByTagName('img');
+                            for (var i = 0; i < oImg.length; i++) {
+                                if (oImg[i].id == sId) {
+                                    oImg[i].previousSibling.previousSibling.checked = true;
+                                    oImg[i].style.opacity = '1';
+                                } else {
+                                    oImg[i].style.opacity = '0.4';
+                                }
+                            }
+                        }
+                    </script>
+                </div>
             </div>
-            {% endfor %}
-         <div class="pages" align="center">
-            {{ all_message_page.render }}
-             <p>第{{ all_message_page.number }}页</p>
-         </div>
-
-    <div class="gbox">
-      <form action="{% url 'blog:message' %}" method="post" name="form1" id="form1">
-        <p> <strong>来说点儿什么吧...</strong></p>
-        <p><span> 您的姓名:</span>
-          {{ message_form.name }}<span>{{ errors_obj.name }}</span>
-          </p>
-        <p><span>选择头像:</span> *</p>
-        <p>
-            {% for photo in message_photos %}
-           <i>
-          <input type="radio" value= "{{ MEDIA_URL }}{{ photo.user_photo }}" id= "{{ photo.id }}" name="mycall" style="display:none">
-          <img id="{{ photo.id }}" src="{{ MEDIA_URL }}{{ photo.user_photo }}" onclick="myFun(this.id)" width="50" height="50">
-           </i>
-            {% endfor %}
-
-        </p>
-        <p><span class="tnr">留言内容:</span>
-          <textarea name="message" cols="60" rows="12" id="lytext" placeholder="{{ errors_obj.message.0 }}"></textarea>
-        </p>
-        <p>
-          <input type="submit" name="Submit3" value="提交" />
-          <input name="enews" type="hidden" id="enews" value="AddGbook" />
-        </p>
-          {% csrf_token %}
-      </form>
-{#                 {{ message_form }}#}
-    </div>
-  </div>
-  <script>
-  function myFun(sId) {
-    var oImg = document.getElementsByTagName('img');
-    for (var i = 0; i < oImg.length; i++) {
-      if (oImg[i].id == sId) {
-        oImg[i].previousSibling.previousSibling.checked = true;
-        oImg[i].style.opacity = '1';
-      } else {
-        oImg[i].style.opacity = '0.4';
-      }
-    }
-  }
-</script>
-      </div>
-    </div>
-  </div>
-  <div class="rightbox">
-    <div class="aboutme">
-      <h2 class="ab_title">关于我</h2>
-      <div class="avatar"><img src="{{ MEDIA_URL }}{{ info.head_portrait }}" /></div>
-        <div class="ab_con">
-            <p>网名：{{ info.nick_name }} | {{ info.name }}</p>
-            <p>职业：{{ info.work }} </p>
-            <p>籍贯：{{ info.place }}</p>
-            <p>邮箱：{{ info.email }}</p>
-            <p>点滴: {{ info.record_tip }}</p>
         </div>
-    </div>
-    <div class="weixin">
-      <h2 class="ab_title">官方微信</h2>
-      <ul>
-        <img src="{% static 'images/wx.jpg' %}">
-      </ul>
-    </div>
-  </div>
-</article>
-{% include 'blog_footer.html' %}
-</body>
+        <div class="rightbox">
+            <div class="aboutme">
+                <h2 class="ab_title">关于我</h2>
+                <div class="avatar"><img src="{{ MEDIA_URL }}{{ info.head_portrait }}"/></div>
+                <div class="ab_con">
+                    <p>网名：{{ info.nick_name }} | {{ info.name }}</p>
+                    <p>职业：{{ info.work }} </p>
+                    <p>籍贯：{{ info.place }}</p>
+                    <p>邮箱：{{ info.email }}</p>
+                    <p>点滴: {{ info.record_tip }}</p>
+                </div>
+            </div>
+            <div class="weixin">
+                <h2 class="ab_title">官方微信</h2>
+                <ul>
+                    <img src="{% static 'images/wx.jpg' %}">
+                </ul>
+            </div>
+        </div>
+    </article>
+    {% include 'blog_footer.html' %}
+    </body>
 {% endblock %}
 
