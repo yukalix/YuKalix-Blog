@@ -21,7 +21,7 @@ import xadmin
 
 from django.shortcuts import render, HttpResponse, redirect
 def love(request):
-    return render(request, 'welcome.html')
+    return render(request, 'blog_guy.html')
 urlpatterns = [
     path('admin/', xadmin.site.urls),
     path('love/',love ),
