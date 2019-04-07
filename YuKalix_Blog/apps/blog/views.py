@@ -22,7 +22,7 @@ class Index(View):
         change_info(request)
 
         banners = Banner.objects.all().order_by('-id')[:3]
-        info = AboutMeInfo.objects.last()
+        info = AboutMeInfo.objects.first()
         blogrolls = Blogroll.objects.all()
         articles = Article.objects.all()
         # 特别推荐列表
