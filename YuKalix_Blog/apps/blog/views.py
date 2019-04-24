@@ -22,7 +22,7 @@ class Index(View):
         change_info(request)
 
         banners = Banner.objects.all().order_by('-id')[:3]
-        info = AboutMeInfo.objects.first()
+        info = AboutMeInfo.objects.last()
         blogrolls = Blogroll.objects.all()
         articles = Article.objects.all()
         # 特别推荐列表
@@ -184,7 +184,7 @@ class Search(View):
 class MessageView(View):
 
     def get(selfr, request):
-        info = AboutMeInfo.objects.first()
+        info = AboutMeInfo.objects.last()
         message_form = MessageForm()
         # 获取留言所有头像
         message_photos = MessageUserPhoto.objects.all()

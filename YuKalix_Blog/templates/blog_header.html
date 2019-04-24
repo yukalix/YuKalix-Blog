@@ -12,7 +12,7 @@
                    {% ifequal '/about_me/' request.path %}style="color:  #f65a8a" {% endifequal %}>关于我</a></li>
             <li><a href="{% url 'blog:message' %}" {% ifequal '/message/' request.path %}
                    style="color:  #f65a8a" {% endifequal %}>留言</a></li>
-            <li><a href="/admin/" {% ifequal '/message/' request.path %}
+            <li><a href="/admin/" {% ifequal '/admin/' request.path %}
                    style="color:  #f65a8a" {% endifequal %}>后台管理</a></li>
         </ul>
     </div>
