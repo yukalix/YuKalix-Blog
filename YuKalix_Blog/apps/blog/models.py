@@ -4,6 +4,7 @@ from datetime import datetime
 # 富文本
 # from DjangoUeditor.models import UEditorField
 from ckeditor.fields import RichTextField
+from mdeditor.fields import MDTextField
 
 # Create your models here.
 
@@ -49,7 +50,7 @@ class AboutMeInfo(models.Model):
 # 关于我页面文章
 class AboutMeArticle(models.Model):
     title = models.CharField(verbose_name='文章标题', max_length=64)
-    article = RichTextField(verbose_name='文章')
+    article = MDTextField(verbose_name='文章')
 
     class Meta:
         verbose_name = '关于我页面文章'
@@ -84,7 +85,7 @@ class Article(models.Model):
     author = models.CharField(verbose_name='文章作者', max_length=32, default='YuKalix')
     intro = models.CharField(verbose_name='文章简介', max_length=300, default='')
     tag = models.ManyToManyField(ArticleTag, verbose_name='文章标签', max_length=10, default='', null=True, blank=True)
-    content = RichTextField(verbose_name='文章内容')
+    content = MDTextField(verbose_name='文章内容')
     fav_nums = models.PositiveIntegerField(verbose_name='文章点赞量', default=0)
     look_nums = models.PositiveIntegerField(verbose_name='文章浏览量', default=0)
     classify = models.CharField(verbose_name='文章分类', choices=CLASSIFYS, max_length=10)

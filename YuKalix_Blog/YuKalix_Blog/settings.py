@@ -37,13 +37,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     # add xadmin
     'xadmin',
     'crispy_forms',
     'reversion',
+
     # 添加富文本
-    'ckeditor',
+    # 'ckeditor',
+    'mdeditor',
     # 'DjangoUeditor',
+
     # 分页
     'pure_pagination',
     # add app
@@ -149,6 +153,8 @@ PAGINATION_SETTINGS = {
 
 
 # ckeditor config
+
+'''
 CKEDITOR_UPLOAD_PATH = 'article_files/'
 CKEDITOR_JQUERY_URL ='js/jquery-3.2.1.min.js'
 CKEDITOR_IMAGE_BACKEND = 'pillow'
@@ -194,5 +200,7 @@ CKEDITOR_CONFIGS = {
 }
 CKEDITOR_ALLOW_NONIMAGE_FILES = False
 CKEDITOR_BROWSE_SHOW_DIRS = True
+'''
 
 
+# markdown config

@@ -12,6 +12,7 @@ from apps.web_statistics.models import *
 from apps.web_statistics.views import change_info, set_day_look_number
 
 from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
+import markdown
 
 
 # 博客首页
@@ -56,6 +57,18 @@ class AboutMe(View):
 
     def get(self, request):
         article = AboutMeArticle.objects.last()
+        # markdown编辑器配置，生成html文件渲染
+        # 如果数据库没文件会报错，所以try下
+        try:
+            article.article = markdown.markdown(article.article.replace("\r\n", '  \n'), extensions=[
+                'markdown.extensions.extra',
+                'markdown.extensions.codehilite',
+                'markdown.extensions.toc',
+            ])
+        except:
+            pass
+
+
         info = AboutMeInfo.objects.last()
         return render(request, 'about.html', {
             'article': article,
@@ -112,6 +125,15 @@ class ArticleView(View):
         set_day_look_number(request)
 
         article = Article.objects.filter(id=id)
+
+        # markdown编辑器配置，生成html文件渲染
+        # 这里由于markdown的加入，但又不能影响后面的操作单独引用下，取到内容后渲染上传
+        article1 = article[0]
+        article1.content = markdown.markdown(article1.content.replace("\r\n", '  \n'), extensions=[
+            'markdown.extensions.extra',
+            'markdown.extensions.codehilite',
+            'markdown.extensions.toc',
+        ])
         # 浏览量
         look_num = article[0].look_nums
         article.update(look_nums=look_num + 1)
@@ -150,6 +172,7 @@ class ArticleView(View):
             'same_as_articles': same_as_articles,
             'up_article': up_article,
             'down_article': down_article,
+            'article1': article1,# markdown内容和article一样其实
         })
 
 

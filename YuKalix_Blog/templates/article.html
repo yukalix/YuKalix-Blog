@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/code.css' %}">
+{% endblock %}
+
+
 {% block title %}
     文章
 {% endblock %}
@@ -26,7 +31,8 @@
                     </div>
                     <div class="news_about"><strong>简介</strong>{{ article.intro }}</div>
                     <div class="news_infos">
-                        {{ article.content|safe }}
+{#                        {{ article.content|safe }}#}
+                        {{ article1.content|safe }}
                         {#            <p class="bt-blue"><a href="#" target="_blank">下 载</a></p>#}
                     </div>
                 </div>
@@ -98,8 +104,8 @@
                 <form action="/e/search/index.php" method="post" name="searchform" id="searchform">
                     <input name="keyboard" id="keyboard" class="input_text" value="请输入关键字"
                            style="color: rgb(153, 153, 153);"
-                           onfocus="if(value=='请输入关键字'){this.style.color='#000';value=''}"
-                           onblur="if(value==''){this.style.color='#999';value='请输入关键字'}" type="text">
+                           onfocus="if(value==='请输入关键字'){this.style.color='#000';value=''}"
+                           onblur="if(value===''){this.style.color='#999';value='请输入关键字'}" type="text">
                     <input name="show" value="title" type="hidden">
                     <input name="tempid" value="1" type="hidden">
                     <input name="tbname" value="news" type="hidden">

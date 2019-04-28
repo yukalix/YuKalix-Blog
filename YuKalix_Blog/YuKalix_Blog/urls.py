@@ -30,7 +30,12 @@ urlpatterns = [
     path('', include('apps.blog.urls', namespace='blog')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('ueditor', include('DjangoUeditor.urls')),
+    path('mdeditor/', include('mdeditor.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if settings.DEBUG:
+    # static files (images, css, javascript, etc.)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # 全局配置404
 # handler404 = 'blog.views.page404'

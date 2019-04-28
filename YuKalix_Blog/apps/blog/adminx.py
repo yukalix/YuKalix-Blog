@@ -39,7 +39,7 @@ class AboutMeInfoAdmin(object):
 
 
 class AboutMeArticleAdmin(object):
-    list_display = ('title', 'article')
+    list_display = ('title', 'article',)
 
 
 # 文章
