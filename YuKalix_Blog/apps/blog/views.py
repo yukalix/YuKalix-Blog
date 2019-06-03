@@ -180,10 +180,12 @@ class ArticleView(View):
 class ClickFav(View):
     def get(self, request):
         article_id = request.GET.get('article_id')
+        print(article_id)
         click_fav = Article.objects.filter(id=article_id)
         fav_num = click_fav[0].fav_nums
         click_fav.update(fav_nums=fav_num + 1)
         return HttpResponse('OK')
+
 
 
 # 搜索
